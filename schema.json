@@ -1,0 +1,1640 @@
+[
+  {
+    "id": 1,
+    "created_at": "2025-09-01T16:56:53.505186+05:30",
+    "updated_at": "2025-09-01T16:56:53.505186+05:30",
+    "is_active": true,
+    "actual_readings": [
+      {
+        "accepted": "2",
+        "rejected": "2"
+      }
+    ],
+    "po_no": "1004",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Turkar",
+      "email": "arpit.turkar@indi4.io",
+      "phone_number": "9168719523",
+      "plant_id": {
+        "plant_id": "1001",
+        "plant_name": "AMMUNITION FACTORY KHADKI",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 672,
+      "LSL": "6",
+      "target_value": "10",
+      "USL": "14",
+      "sampling_required": true,
+      "sample_size": "4.0",
+      "inspection_frequency": "Hourly",
+      "inspection_method": "Manual",
+      "recording_type": "Summarized",
+      "likely_defects_classification": "Major",
+      "remarks": null,
+      "building_id": {
+        "id": 2,
+        "is_active": true,
+        "building_id": "C4",
+        "building_name": "CASE 4",
+        "sub_section": "C4_001",
+        "plant_id": 1
+      },
+      "item_code_id": {
+        "id": 35,
+        "is_active": true,
+        "item_code": "5514634032",
+        "item_description": "CASE FOR 5.56MM BALL M-193 MAKING",
+        "unit": "No",
+        "item_type": "SFG",
+        "end_store": null,
+        "building_id": {
+          "id": {},
+          "is_active": {},
+          "building_id": {},
+          "building_category": {},
+          "building_name": {},
+          "sub_section": {},
+          "plant_id": {}
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 9,
+        "created_at": "2025-09-01T15:26:54.492174+05:30",
+        "updated_at": "2025-09-01T15:26:54.492174+05:30",
+        "is_active": true,
+        "machine_id": "KG-990 SR.NO.09",
+        "machine_name": "KG-990 SR.NO.09",
+        "machine_make": "Make1",
+        "machine_model": "Model1",
+        "is_digital": false,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 466,
+        "is_active": true,
+        "operation_id": "0080",
+        "operation_name": "I&II DRAW & TRIMMING HS-I",
+        "operation_description": "I&II DRAW & TRIMMING HS-I",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 183,
+        "is_active": true,
+        "inspection_parameter_id": "0090",
+        "inspection_parameter": "VISUAL",
+        "parameter_description": "VISUAL"
+      }
+    }
+  },
+  {
+    "id": 2,
+    "created_at": "2025-09-01T17:16:15.395242+05:30",
+    "updated_at": "2025-09-01T17:16:15.395242+05:30",
+    "is_active": true,
+    "actual_readings": [
+      "9",
+      "11",
+      "10"
+    ],
+    "po_no": "1004",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Turkar",
+      "email": "arpit.turkar@indi4.io",
+      "phone_number": "9168719523",
+      "plant_id": {
+        "plant_id": "1001",
+        "plant_name": "AMMUNITION FACTORY KHADKI",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 667,
+      "LSL": "8",
+      "target_value": "12",
+      "USL": "16",
+      "sampling_required": true,
+      "sample_size": "3.0",
+      "inspection_frequency": "Shiftly",
+      "inspection_method": "Auto",
+      "recording_type": null,
+      "likely_defects_classification": "Critical",
+      "remarks": null,
+      "building_id": {
+        "id": 2,
+        "is_active": true,
+        "building_id": "C4",
+        "building_name": "CASE 4",
+        "sub_section": "C4_001",
+        "plant_id": 1
+      },
+      "item_code_id": {
+        "id": 35,
+        "is_active": true,
+        "item_code": "5514634032",
+        "item_description": "CASE FOR 5.56MM BALL M-193 MAKING",
+        "unit": "No",
+        "item_type": "SFG",
+        "end_store": null,
+        "building_id": {
+          "id": {},
+          "is_active": {},
+          "building_id": {},
+          "building_category": {},
+          "building_name": {},
+          "sub_section": {},
+          "plant_id": {}
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 12,
+        "created_at": "2025-09-01T15:26:54.492174+05:30",
+        "updated_at": "2025-09-01T15:26:54.492174+05:30",
+        "is_active": true,
+        "machine_id": "AFK/LT-1643",
+        "machine_name": "AFK/LT-1643",
+        "machine_make": "Make4",
+        "machine_model": "Model4",
+        "is_digital": false,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 461,
+        "is_active": true,
+        "operation_id": "0035",
+        "operation_name": "Checking of Solution Strength from Lab",
+        "operation_description": "Checking of Solution Strength from Lab",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 178,
+        "is_active": true,
+        "inspection_parameter_id": "0040",
+        "inspection_parameter": "VISUAL",
+        "parameter_description": "VISUAL"
+      }
+    }
+  },
+  {
+    "id": 3,
+    "created_at": "2025-09-08T12:18:57.839725+05:30",
+    "updated_at": "2025-09-08T12:18:57.839725+05:30",
+    "is_active": true,
+    "actual_readings": [
+      "1",
+      "0"
+    ],
+    "po_no": "D-2074",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Dehu Road",
+      "email": "turkararpit@gmail.com",
+      "phone_number": "9187878766",
+      "plant_id": {
+        "plant_id": "1008",
+        "plant_name": "ORDNANCE FACTORY DEHUROAD",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 728,
+      "LSL": "60.0",
+      "target_value": "65.0",
+      "USL": "70.0",
+      "sampling_required": true,
+      "sample_size": "2",
+      "inspection_frequency": "Shiftly",
+      "inspection_method": "Manual",
+      "recording_type": null,
+      "likely_defects_classification": "Critical",
+      "remarks": null,
+      "building_id": {
+        "id": 21,
+        "is_active": true,
+        "building_id": "139/136",
+        "building_name": "139/136",
+        "sub_section": "139/136",
+        "plant_id": 8
+      },
+      "item_code_id": {
+        "id": 52,
+        "is_active": true,
+        "item_code": "1000000014",
+        "item_description": "51mmm smk",
+        "unit": "No",
+        "item_type": "FG",
+        "end_store": null,
+        "building_id": {
+          "id": 30,
+          "is_active": true,
+          "building_id": "132",
+          "building_category": null,
+          "building_name": "132",
+          "sub_section": "132",
+          "plant_id": 8
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 17,
+        "created_at": "2025-09-08T10:12:41.073901+05:30",
+        "updated_at": "2025-09-08T10:12:41.073901+05:30",
+        "is_active": true,
+        "machine_id": "DMAC-01",
+        "machine_name": "DMAC_Name-01",
+        "machine_make": "Make1",
+        "machine_model": "Model1",
+        "is_digital": false,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 715,
+        "is_active": true,
+        "operation_id": "1189",
+        "operation_name": "Ingredient preparation for composition SR-252",
+        "operation_description": "Ingredient preparation for composition SR-252",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 402,
+        "is_active": true,
+        "inspection_parameter_id": "1189",
+        "inspection_parameter": "C) 9.5 sec Delay Pressing - i)Charge Mass of compo. ME-433",
+        "parameter_description": "C) 9.5 sec Delay Pressing - i)Charge Mass of compo. ME-433"
+      }
+    }
+  },
+  {
+    "id": 4,
+    "created_at": "2025-09-08T12:18:57.879578+05:30",
+    "updated_at": "2025-09-08T12:18:57.879578+05:30",
+    "is_active": true,
+    "actual_readings": [
+      {
+        "accepted": "2",
+        "rejected": "0"
+      }
+    ],
+    "po_no": "D-2074",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Dehu Road",
+      "email": "turkararpit@gmail.com",
+      "phone_number": "9187878766",
+      "plant_id": {
+        "plant_id": "1008",
+        "plant_name": "ORDNANCE FACTORY DEHUROAD",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 730,
+      "LSL": "57",
+      "target_value": "60",
+      "USL": "61",
+      "sampling_required": true,
+      "sample_size": "2",
+      "inspection_frequency": "Daily",
+      "inspection_method": "Manual",
+      "recording_type": "Summarized",
+      "likely_defects_classification": "Minor",
+      "remarks": null,
+      "building_id": {
+        "id": 21,
+        "is_active": true,
+        "building_id": "139/136",
+        "building_name": "139/136",
+        "sub_section": "139/136",
+        "plant_id": 8
+      },
+      "item_code_id": {
+        "id": 52,
+        "is_active": true,
+        "item_code": "1000000014",
+        "item_description": "51mmm smk",
+        "unit": "No",
+        "item_type": "FG",
+        "end_store": null,
+        "building_id": {
+          "id": 30,
+          "is_active": true,
+          "building_id": "132",
+          "building_category": null,
+          "building_name": "132",
+          "sub_section": "132",
+          "plant_id": 8
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 20,
+        "created_at": "2025-09-08T10:12:41.073901+05:30",
+        "updated_at": "2025-09-08T10:12:41.074956+05:30",
+        "is_active": true,
+        "machine_id": "DMAC-04",
+        "machine_name": "DMAC_Name-04",
+        "machine_make": "Make4",
+        "machine_model": "Model4",
+        "is_digital": false,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 715,
+        "is_active": true,
+        "operation_id": "1189",
+        "operation_name": "Ingredient preparation for composition SR-252",
+        "operation_description": "Ingredient preparation for composition SR-252",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 346,
+        "is_active": true,
+        "inspection_parameter_id": "1133",
+        "inspection_parameter": "iv)Weight of Mg.Powder",
+        "parameter_description": "iv)Weight of Mg.Powder"
+      }
+    }
+  },
+  {
+    "id": 5,
+    "created_at": "2025-09-08T12:20:03.228268+05:30",
+    "updated_at": "2025-09-08T12:20:03.228268+05:30",
+    "is_active": true,
+    "actual_readings": [
+      "71",
+      "75",
+      "79"
+    ],
+    "po_no": "D-2069",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Dehu Road",
+      "email": "turkararpit@gmail.com",
+      "phone_number": "9187878766",
+      "plant_id": {
+        "plant_id": "1008",
+        "plant_name": "ORDNANCE FACTORY DEHUROAD",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 732,
+      "LSL": "70",
+      "target_value": "75",
+      "USL": "80",
+      "sampling_required": true,
+      "sample_size": "3",
+      "inspection_frequency": "Daily",
+      "inspection_method": "Manual",
+      "recording_type": "Summarized",
+      "likely_defects_classification": "Minor",
+      "remarks": null,
+      "building_id": {
+        "id": 30,
+        "is_active": true,
+        "building_id": "132",
+        "building_name": "132",
+        "sub_section": "132",
+        "plant_id": 8
+      },
+      "item_code_id": {
+        "id": 52,
+        "is_active": true,
+        "item_code": "1000000014",
+        "item_description": "51mmm smk",
+        "unit": "No",
+        "item_type": "FG",
+        "end_store": null,
+        "building_id": {
+          "id": {},
+          "is_active": {},
+          "building_id": {},
+          "building_category": {},
+          "building_name": {},
+          "sub_section": {},
+          "plant_id": {}
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 21,
+        "created_at": "2025-09-08T10:12:41.074956+05:30",
+        "updated_at": "2025-09-08T10:12:41.074956+05:30",
+        "is_active": true,
+        "machine_id": "DMAC-05",
+        "machine_name": "DMAC_Name-05",
+        "machine_make": "Make5",
+        "machine_model": "Model5",
+        "is_digital": true,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 617,
+        "is_active": true,
+        "operation_id": "1091",
+        "operation_name": "Ingredient Preparation (Potassium Chlorate)",
+        "operation_description": "Ingredient Preparation (Potassium Chlorate)",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 305,
+        "is_active": true,
+        "inspection_parameter_id": "1092",
+        "inspection_parameter": "ii)Check Filled box 37A, Container, Pickets ,75 A",
+        "parameter_description": "ii)Check Filled box 37A, Container, Pickets ,75 A"
+      }
+    }
+  },
+  {
+    "id": 6,
+    "created_at": "2025-09-08T12:20:03.264549+05:30",
+    "updated_at": "2025-09-08T12:20:03.264549+05:30",
+    "is_active": true,
+    "actual_readings": [
+      "0",
+      "1",
+      "1"
+    ],
+    "po_no": "D-2069",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Dehu Road",
+      "email": "turkararpit@gmail.com",
+      "phone_number": "9187878766",
+      "plant_id": {
+        "plant_id": "1008",
+        "plant_name": "ORDNANCE FACTORY DEHUROAD",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 731,
+      "LSL": "60",
+      "target_value": "70",
+      "USL": "75",
+      "sampling_required": true,
+      "sample_size": "3",
+      "inspection_frequency": "Daily",
+      "inspection_method": "Manual",
+      "recording_type": null,
+      "likely_defects_classification": "Minor",
+      "remarks": null,
+      "building_id": {
+        "id": 30,
+        "is_active": true,
+        "building_id": "132",
+        "building_name": "132",
+        "sub_section": "132",
+        "plant_id": 8
+      },
+      "item_code_id": {
+        "id": 52,
+        "is_active": true,
+        "item_code": "1000000014",
+        "item_description": "51mmm smk",
+        "unit": "No",
+        "item_type": "FG",
+        "end_store": null,
+        "building_id": {
+          "id": {},
+          "is_active": {},
+          "building_id": {},
+          "building_category": {},
+          "building_name": {},
+          "sub_section": {},
+          "plant_id": {}
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 22,
+        "created_at": "2025-09-08T10:12:41.074956+05:30",
+        "updated_at": "2025-09-08T10:12:41.074956+05:30",
+        "is_active": true,
+        "machine_id": "DMAC-06",
+        "machine_name": "DMAC_Name-06",
+        "machine_make": "Make6",
+        "machine_model": "Model6",
+        "is_digital": false,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 617,
+        "is_active": true,
+        "operation_id": "1091",
+        "operation_name": "Ingredient Preparation (Potassium Chlorate)",
+        "operation_description": "Ingredient Preparation (Potassium Chlorate)",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 304,
+        "is_active": true,
+        "inspection_parameter_id": "1091",
+        "inspection_parameter": "i)Verification of Acceptance details",
+        "parameter_description": "i)Verification of Acceptance details"
+      }
+    }
+  },
+  {
+    "id": 7,
+    "created_at": "2025-09-08T12:20:36.193468+05:30",
+    "updated_at": "2025-09-08T12:20:36.193468+05:30",
+    "is_active": true,
+    "actual_readings": [
+      {
+        "accepted": "2",
+        "rejected": "0"
+      }
+    ],
+    "po_no": "D-2070",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Dehu Road",
+      "email": "turkararpit@gmail.com",
+      "phone_number": "9187878766",
+      "plant_id": {
+        "plant_id": "1008",
+        "plant_name": "ORDNANCE FACTORY DEHUROAD",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 734,
+      "LSL": "57",
+      "target_value": "67",
+      "USL": "70",
+      "sampling_required": true,
+      "sample_size": "2",
+      "inspection_frequency": "Daily",
+      "inspection_method": "Manual",
+      "recording_type": "Summarized",
+      "likely_defects_classification": "Minor",
+      "remarks": null,
+      "building_id": {
+        "id": 31,
+        "is_active": true,
+        "building_id": "134",
+        "building_name": "134",
+        "sub_section": "134",
+        "plant_id": 8
+      },
+      "item_code_id": {
+        "id": 51,
+        "is_active": true,
+        "item_code": "1000000013",
+        "item_description": "CS 16MM White",
+        "unit": "No",
+        "item_type": "FG",
+        "end_store": null,
+        "building_id": {
+          "id": 25,
+          "is_active": true,
+          "building_id": "104",
+          "building_category": null,
+          "building_name": "104",
+          "sub_section": "104",
+          "plant_id": 8
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 22,
+        "created_at": "2025-09-08T10:12:41.074956+05:30",
+        "updated_at": "2025-09-08T10:12:41.074956+05:30",
+        "is_active": true,
+        "machine_id": "DMAC-06",
+        "machine_name": "DMAC_Name-06",
+        "machine_make": "Make6",
+        "machine_model": "Model6",
+        "is_digital": false,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 617,
+        "is_active": true,
+        "operation_id": "1091",
+        "operation_name": "Ingredient Preparation (Potassium Chlorate)",
+        "operation_description": "Ingredient Preparation (Potassium Chlorate)",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 306,
+        "is_active": true,
+        "inspection_parameter_id": "1093",
+        "inspection_parameter": "iii)Ensure proper container packing 75 A",
+        "parameter_description": "iii)Ensure proper container packing 75 A"
+      }
+    }
+  },
+  {
+    "id": 8,
+    "created_at": "2025-09-08T12:21:19.987342+05:30",
+    "updated_at": "2025-09-08T12:21:19.987342+05:30",
+    "is_active": true,
+    "actual_readings": [
+      {
+        "accepted": "2",
+        "rejected": "1"
+      }
+    ],
+    "po_no": "D-2070",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Dehu Road",
+      "email": "turkararpit@gmail.com",
+      "phone_number": "9187878766",
+      "plant_id": {
+        "plant_id": "1008",
+        "plant_name": "ORDNANCE FACTORY DEHUROAD",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 724,
+      "LSL": "57.0",
+      "target_value": "60.0",
+      "USL": "63.0",
+      "sampling_required": true,
+      "sample_size": "3",
+      "inspection_frequency": "Hourly",
+      "inspection_method": "Manual",
+      "recording_type": "Summarized",
+      "likely_defects_classification": "Major",
+      "remarks": null,
+      "building_id": {
+        "id": 31,
+        "is_active": true,
+        "building_id": "134",
+        "building_name": "134",
+        "sub_section": "134",
+        "plant_id": 8
+      },
+      "item_code_id": {
+        "id": 51,
+        "is_active": true,
+        "item_code": "1000000013",
+        "item_description": "CS 16MM White",
+        "unit": "No",
+        "item_type": "FG",
+        "end_store": null,
+        "building_id": {
+          "id": 25,
+          "is_active": true,
+          "building_id": "104",
+          "building_category": null,
+          "building_name": "104",
+          "sub_section": "104",
+          "plant_id": 8
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 20,
+        "created_at": "2025-09-08T10:12:41.073901+05:30",
+        "updated_at": "2025-09-08T10:12:41.074956+05:30",
+        "is_active": true,
+        "machine_id": "DMAC-04",
+        "machine_name": "DMAC_Name-04",
+        "machine_make": "Make4",
+        "machine_model": "Model4",
+        "is_digital": false,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 660,
+        "is_active": true,
+        "operation_id": "1134",
+        "operation_name": "Mixing of Compo.ME-425",
+        "operation_description": "Mixing of Compo.ME-425",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 347,
+        "is_active": true,
+        "inspection_parameter_id": "1134",
+        "inspection_parameter": "iv)Weight of  BLO",
+        "parameter_description": "iv)Weight of  BLO"
+      }
+    }
+  },
+  {
+    "id": 9,
+    "created_at": "2025-09-08T12:21:20.016823+05:30",
+    "updated_at": "2025-09-08T12:21:20.016823+05:30",
+    "is_active": true,
+    "actual_readings": [
+      "53",
+      "57",
+      "52"
+    ],
+    "po_no": "D-2070",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Dehu Road",
+      "email": "turkararpit@gmail.com",
+      "phone_number": "9187878766",
+      "plant_id": {
+        "plant_id": "1008",
+        "plant_name": "ORDNANCE FACTORY DEHUROAD",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 736,
+      "LSL": "51",
+      "target_value": "57",
+      "USL": "57",
+      "sampling_required": true,
+      "sample_size": "3",
+      "inspection_frequency": "Daily",
+      "inspection_method": "Manual",
+      "recording_type": null,
+      "likely_defects_classification": "Minor",
+      "remarks": null,
+      "building_id": {
+        "id": 31,
+        "is_active": true,
+        "building_id": "134",
+        "building_name": "134",
+        "sub_section": "134",
+        "plant_id": 8
+      },
+      "item_code_id": {
+        "id": 51,
+        "is_active": true,
+        "item_code": "1000000013",
+        "item_description": "CS 16MM White",
+        "unit": "No",
+        "item_type": "FG",
+        "end_store": null,
+        "building_id": {
+          "id": 25,
+          "is_active": true,
+          "building_id": "104",
+          "building_category": null,
+          "building_name": "104",
+          "sub_section": "104",
+          "plant_id": 8
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 19,
+        "created_at": "2025-09-08T10:12:41.073901+05:30",
+        "updated_at": "2025-09-08T10:12:41.073901+05:30",
+        "is_active": true,
+        "machine_id": "DMAC-03",
+        "machine_name": "DMAC_Name-03",
+        "machine_make": "Make3",
+        "machine_model": "Model3",
+        "is_digital": true,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 660,
+        "is_active": true,
+        "operation_id": "1134",
+        "operation_name": "Mixing of Compo.ME-425",
+        "operation_description": "Mixing of Compo.ME-425",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 304,
+        "is_active": true,
+        "inspection_parameter_id": "1091",
+        "inspection_parameter": "i)Verification of Acceptance details",
+        "parameter_description": "i)Verification of Acceptance details"
+      }
+    }
+  },
+  {
+    "id": 10,
+    "created_at": "2025-09-08T12:21:20.045587+05:30",
+    "updated_at": "2025-09-08T12:21:20.045587+05:30",
+    "is_active": true,
+    "actual_readings": [
+      "0",
+      "1",
+      "1"
+    ],
+    "po_no": "D-2070",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Dehu Road",
+      "email": "turkararpit@gmail.com",
+      "phone_number": "9187878766",
+      "plant_id": {
+        "plant_id": "1008",
+        "plant_name": "ORDNANCE FACTORY DEHUROAD",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 737,
+      "LSL": "52",
+      "target_value": "58",
+      "USL": "58",
+      "sampling_required": true,
+      "sample_size": "3",
+      "inspection_frequency": "Daily",
+      "inspection_method": "Manual",
+      "recording_type": "",
+      "likely_defects_classification": "Minor",
+      "remarks": null,
+      "building_id": {
+        "id": 31,
+        "is_active": true,
+        "building_id": "134",
+        "building_name": "134",
+        "sub_section": "134",
+        "plant_id": 8
+      },
+      "item_code_id": {
+        "id": 51,
+        "is_active": true,
+        "item_code": "1000000013",
+        "item_description": "CS 16MM White",
+        "unit": "No",
+        "item_type": "FG",
+        "end_store": null,
+        "building_id": {
+          "id": 25,
+          "is_active": true,
+          "building_id": "104",
+          "building_category": null,
+          "building_name": "104",
+          "sub_section": "104",
+          "plant_id": 8
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 20,
+        "created_at": "2025-09-08T10:12:41.073901+05:30",
+        "updated_at": "2025-09-08T10:12:41.074956+05:30",
+        "is_active": true,
+        "machine_id": "DMAC-04",
+        "machine_name": "DMAC_Name-04",
+        "machine_make": "Make4",
+        "machine_model": "Model4",
+        "is_digital": false,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 660,
+        "is_active": true,
+        "operation_id": "1134",
+        "operation_name": "Mixing of Compo.ME-425",
+        "operation_description": "Mixing of Compo.ME-425",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 305,
+        "is_active": true,
+        "inspection_parameter_id": "1092",
+        "inspection_parameter": "ii)Check Filled box 37A, Container, Pickets ,75 A",
+        "parameter_description": "ii)Check Filled box 37A, Container, Pickets ,75 A"
+      }
+    }
+  },
+  {
+    "id": 11,
+    "created_at": "2025-09-08T12:21:59.673104+05:30",
+    "updated_at": "2025-09-08T12:21:59.673104+05:30",
+    "is_active": true,
+    "actual_readings": [
+      "2"
+    ],
+    "po_no": "D-2070",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Dehu Road",
+      "email": "turkararpit@gmail.com",
+      "phone_number": "9187878766",
+      "plant_id": {
+        "plant_id": "1008",
+        "plant_name": "ORDNANCE FACTORY DEHUROAD",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 725,
+      "LSL": "57.0",
+      "target_value": "60.0",
+      "USL": "63.0",
+      "sampling_required": true,
+      "sample_size": "1",
+      "inspection_frequency": "Daily",
+      "inspection_method": "Manual",
+      "recording_type": null,
+      "likely_defects_classification": "Minor",
+      "remarks": null,
+      "building_id": {
+        "id": 31,
+        "is_active": true,
+        "building_id": "134",
+        "building_name": "134",
+        "sub_section": "134",
+        "plant_id": 8
+      },
+      "item_code_id": {
+        "id": 51,
+        "is_active": true,
+        "item_code": "1000000013",
+        "item_description": "CS 16MM White",
+        "unit": "No",
+        "item_type": "FG",
+        "end_store": null,
+        "building_id": {
+          "id": 25,
+          "is_active": true,
+          "building_id": "104",
+          "building_category": null,
+          "building_name": "104",
+          "sub_section": "104",
+          "plant_id": 8
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 21,
+        "created_at": "2025-09-08T10:12:41.074956+05:30",
+        "updated_at": "2025-09-08T10:12:41.074956+05:30",
+        "is_active": true,
+        "machine_id": "DMAC-05",
+        "machine_name": "DMAC_Name-05",
+        "machine_make": "Make5",
+        "machine_model": "Model5",
+        "is_digital": true,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 669,
+        "is_active": true,
+        "operation_id": "1143",
+        "operation_name": "Ingredient preparation for composition SR-252",
+        "operation_description": "Ingredient preparation for composition SR-252",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 356,
+        "is_active": true,
+        "inspection_parameter_id": "1143",
+        "inspection_parameter": "iii)Check Proper Crimping, Ferrule Crack",
+        "parameter_description": "iii)Check Proper Crimping, Ferrule Crack"
+      }
+    }
+  },
+  {
+    "id": 12,
+    "created_at": "2025-09-08T12:21:59.699167+05:30",
+    "updated_at": "2025-09-08T12:21:59.699167+05:30",
+    "is_active": true,
+    "actual_readings": [
+      "1",
+      "1",
+      "1"
+    ],
+    "po_no": "D-2070",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Dehu Road",
+      "email": "turkararpit@gmail.com",
+      "phone_number": "9187878766",
+      "plant_id": {
+        "plant_id": "1008",
+        "plant_name": "ORDNANCE FACTORY DEHUROAD",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 739,
+      "LSL": "54",
+      "target_value": "60",
+      "USL": "60",
+      "sampling_required": true,
+      "sample_size": "3",
+      "inspection_frequency": "Daily",
+      "inspection_method": "Manual",
+      "recording_type": null,
+      "likely_defects_classification": "Minor",
+      "remarks": null,
+      "building_id": {
+        "id": 31,
+        "is_active": true,
+        "building_id": "134",
+        "building_name": "134",
+        "sub_section": "134",
+        "plant_id": 8
+      },
+      "item_code_id": {
+        "id": 51,
+        "is_active": true,
+        "item_code": "1000000013",
+        "item_description": "CS 16MM White",
+        "unit": "No",
+        "item_type": "FG",
+        "end_store": null,
+        "building_id": {
+          "id": 25,
+          "is_active": true,
+          "building_id": "104",
+          "building_category": null,
+          "building_name": "104",
+          "sub_section": "104",
+          "plant_id": 8
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 22,
+        "created_at": "2025-09-08T10:12:41.074956+05:30",
+        "updated_at": "2025-09-08T10:12:41.074956+05:30",
+        "is_active": true,
+        "machine_id": "DMAC-06",
+        "machine_name": "DMAC_Name-06",
+        "machine_make": "Make6",
+        "machine_model": "Model6",
+        "is_digital": false,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 669,
+        "is_active": true,
+        "operation_id": "1143",
+        "operation_name": "Ingredient preparation for composition SR-252",
+        "operation_description": "Ingredient preparation for composition SR-252",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 295,
+        "is_active": true,
+        "inspection_parameter_id": "1082",
+        "inspection_parameter": "ix)Check Dwell time",
+        "parameter_description": "ix)Check Dwell time"
+      }
+    }
+  },
+  {
+    "id": 13,
+    "created_at": "2025-09-08T12:21:59.724016+05:30",
+    "updated_at": "2025-09-08T12:21:59.724016+05:30",
+    "is_active": true,
+    "actual_readings": [
+      "1",
+      "1"
+    ],
+    "po_no": "D-2070",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Dehu Road",
+      "email": "turkararpit@gmail.com",
+      "phone_number": "9187878766",
+      "plant_id": {
+        "plant_id": "1008",
+        "plant_name": "ORDNANCE FACTORY DEHUROAD",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 738,
+      "LSL": "53",
+      "target_value": "59",
+      "USL": "59",
+      "sampling_required": true,
+      "sample_size": "2",
+      "inspection_frequency": "Daily",
+      "inspection_method": "Manual",
+      "recording_type": "",
+      "likely_defects_classification": "Minor",
+      "remarks": null,
+      "building_id": {
+        "id": 31,
+        "is_active": true,
+        "building_id": "134",
+        "building_name": "134",
+        "sub_section": "134",
+        "plant_id": 8
+      },
+      "item_code_id": {
+        "id": 51,
+        "is_active": true,
+        "item_code": "1000000013",
+        "item_description": "CS 16MM White",
+        "unit": "No",
+        "item_type": "FG",
+        "end_store": null,
+        "building_id": {
+          "id": 25,
+          "is_active": true,
+          "building_id": "104",
+          "building_category": null,
+          "building_name": "104",
+          "sub_section": "104",
+          "plant_id": 8
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 21,
+        "created_at": "2025-09-08T10:12:41.074956+05:30",
+        "updated_at": "2025-09-08T10:12:41.074956+05:30",
+        "is_active": true,
+        "machine_id": "DMAC-05",
+        "machine_name": "DMAC_Name-05",
+        "machine_make": "Make5",
+        "machine_model": "Model5",
+        "is_digital": true,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 669,
+        "is_active": true,
+        "operation_id": "1143",
+        "operation_name": "Ingredient preparation for composition SR-252",
+        "operation_description": "Ingredient preparation for composition SR-252",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 293,
+        "is_active": true,
+        "inspection_parameter_id": "1080",
+        "inspection_parameter": "vii)Wt. of SMP",
+        "parameter_description": "vii)Wt. of SMP"
+      }
+    }
+  },
+  {
+    "id": 14,
+    "created_at": "2025-09-08T12:22:15.831006+05:30",
+    "updated_at": "2025-09-08T12:22:15.831006+05:30",
+    "is_active": true,
+    "actual_readings": [
+      "1",
+      "0",
+      "0"
+    ],
+    "po_no": "D-2070",
+    "created_by_id": {
+      "first_name": "Arpit",
+      "middle_name": "null",
+      "last_name": "Dehu Road",
+      "email": "turkararpit@gmail.com",
+      "phone_number": "9187878766",
+      "plant_id": {
+        "plant_id": "1008",
+        "plant_name": "ORDNANCE FACTORY DEHUROAD",
+        "plant_location_1": null,
+        "plant_location_2": null
+      },
+      "role_id": {
+        "id": 2,
+        "created_at": "2025-08-29T16:46:06.101083+05:30",
+        "updated_at": "2025-08-29T16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning"
+      }
+    },
+    "insp_schedule_id_id": {
+      "id": 726,
+      "LSL": "57.0",
+      "target_value": "60.0",
+      "USL": "63.0",
+      "sampling_required": true,
+      "sample_size": "3",
+      "inspection_frequency": "Daily",
+      "inspection_method": "Manual",
+      "recording_type": null,
+      "likely_defects_classification": "Minor",
+      "remarks": null,
+      "building_id": {
+        "id": 31,
+        "is_active": true,
+        "building_id": "134",
+        "building_name": "134",
+        "sub_section": "134",
+        "plant_id": 8
+      },
+      "item_code_id": {
+        "id": 51,
+        "is_active": true,
+        "item_code": "1000000013",
+        "item_description": "CS 16MM White",
+        "unit": "No",
+        "item_type": "FG",
+        "end_store": null,
+        "building_id": {
+          "id": 25,
+          "is_active": true,
+          "building_id": "104",
+          "building_category": null,
+          "building_name": "104",
+          "sub_section": "104",
+          "plant_id": 8
+        }
+      },
+      "production_machine_id_id": null,
+      "qc_machine_id_id": {
+        "id": 22,
+        "created_at": "2025-09-08T10:12:41.074956+05:30",
+        "updated_at": "2025-09-08T10:12:41.074956+05:30",
+        "is_active": true,
+        "machine_id": "DMAC-06",
+        "machine_name": "DMAC_Name-06",
+        "machine_make": "Make6",
+        "machine_model": "Model6",
+        "is_digital": false,
+        "machine_type": "QC",
+        "plant_id": {
+          "id": {},
+          "created_at": {},
+          "updated_at": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "operation_id": {
+        "id": 670,
+        "is_active": true,
+        "operation_id": "1144",
+        "operation_name": "Mixing of composition SR-252",
+        "operation_description": "Mixing of composition SR-252",
+        "plant_id": {
+          "id": {},
+          "is_active": {},
+          "plant_id": {},
+          "plant_name": {},
+          "plant_location_1": {},
+          "plant_location_2": {}
+        }
+      },
+      "inspection_parameter_id": {
+        "id": 357,
+        "is_active": true,
+        "inspection_parameter_id": "1144",
+        "inspection_parameter": "iv)Check Crimping Strength",
+        "parameter_description": "iv)Check Crimping Strength"
+      }
+    }
+  }
+]
