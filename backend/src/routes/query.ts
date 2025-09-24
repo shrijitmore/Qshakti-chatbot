@@ -124,7 +124,7 @@ queryRouter.post("/", async (req, res) => {
     // RAG retrieve
     const qVec = (await embeddings.embedMany([prompt]))[0];
     const ns = namespace ?? "default";
-    const results = await adaptiveVectorStore.query({ namespace: ns, embedding: qVec, topK });
+    const results = await vectorStore.query({ namespace: ns, embedding: qVec, topK });
 
     const context = results.map((r) => r.text).join("\n\n");
 
