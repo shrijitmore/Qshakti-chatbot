@@ -44,7 +44,7 @@ class AdaptiveVectorStore implements VectorStore {
     }
   }
 
-  async query(input: Parameters<VectorStore['query']>[0]): Promise<ReturnType<VectorStore['query']>> {
+  async query(input: Parameters<VectorStore['query']>[0]): ReturnType<VectorStore['query']> {
     try {
       return await this.activeStore.query(input);
     } catch (error) {
