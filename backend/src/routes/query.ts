@@ -159,13 +159,25 @@ CONTEXT:\n${context}\n\nUSER PROMPT:\n${prompt}`;
       llmNeedChart = promptRequestsChart(prompt) && !promptDisablesChart(prompt);
     }
 
-    // Agent B: Answer composer (always produce text answer; do not describe a chart unless asked)
-    const answerPrompt = `You are Agent B (Answer). Use CONTEXT to answer the user succinctly. If context is insufficient, say so.
-Do NOT mention a chart unless the variable NEED_CHART is true.
+    // Agent B: Enhanced QC Data Analyzer
+    const answerPrompt = `You are an expert Quality Control Data Analyst. Analyze the provided QC inspection data and provide comprehensive, accurate insights.
 
-NEED_CHART: ${llmNeedChart}
+ANALYSIS GUIDELINES:
+- Provide precise numerical analysis when dealing with defect rates, acceptance rates, measurements
+- Identify patterns, trends, and anomalies in the data
+- Compare performance across plants, machines, operators, items, or time periods
+- Highlight critical quality issues and their potential impact
+- Suggest root causes for quality problems when patterns are evident
+- Use statistical thinking for data interpretation
+- Be specific about sample sizes and confidence in your analysis
 
-CONTEXT:\n${context}\n\nUSER PROMPT:\n${prompt}`;
+VISUALIZATION: ${llmNeedChart ? 'Include insights about what the chart shows' : 'Focus on textual analysis only'}
+
+CONTEXT DATA:\n${context}
+
+USER QUESTION: ${prompt}
+
+Provide a detailed, actionable analysis:`;
     let answer: string;
     try {
       answer = await llm.ask({ prompt: answerPrompt });
