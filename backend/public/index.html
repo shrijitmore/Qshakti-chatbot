@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Q-shakti Chatbot | Demo</title>
+    <style>
+      :root { color-scheme: light dark; }
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; padding: 24px; }
+      header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+      h1 { font-size: 18px; margin: 0; }
+      .card { border: 1px solid #ccc3; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+      label { display: block; font-size: 12px; margin-bottom: 6px; opacity: .8; }
+      input[type="text"], textarea, select { width: 100%; box-sizing: border-box; padding: 10px 12px; border-radius: 10px; border: 1px solid #ccc5; background: transparent; color: inherit; }
+      textarea { min-height: 90px; }
+      .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      button { appearance: none; border: none; background: #4f46e5; color: #fff; padding: 10px 16px; border-radius: 10px; cursor: pointer; }
+      button.secondary { background: #64748b; }
+      .answer { white-space: pre-wrap; }
+      img.chart { max-width: 100%; border-radius: 10px; border: 1px solid #ccc5; }
+      code { background: #0001; padding: 2px 6px; border-radius: 6px; }
+      .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .muted { opacity: .7; font-size: 12px; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Q-shakti Chatbot Demo</h1>
+      <div class="muted">Backend: <code id="base">http://localhost:3001</code></div>
+    </header>
+
+    <section class="card">
+      <div class="row">
+        <div>
+          <label>Namespace</label>
+          <input type="text" id="ns" value="inprocess-inspection" />
+        </div>
+        <div>
+          <label>TopK</label>
+          <input type="text" id="topk" value="5" />
+        </div>
+      </div>
+      <label>Prompt</label>
+      <textarea id="prompt">Summarize accepted vs rejected counts and actual_readings by plant.</textarea>
+      <div style="display:flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
+        <label style="display:flex;align-items:center;gap:6px; font-size: 12px;">
+          Output
+          <select id="chartOutput">
+            <option value="png" selected>PNG</option>
+            <option value="json">JSON (render here)</option>
+          </select>
+        </label>
+        <button id="ask">Ask</button>
+        <button id="ingest3" class="secondary">Ingest 3-plant sample</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Answer</h3>
+      <div class="answer" id="answer">–</div>
+    </section>
+
+    <section class="card">
+      <h3>Chart</h3>
+      <div id="chart-meta" class="muted">–</div>
+      <img id="chart-img" class="chart" alt="Chart" />
+      <canvas id="chart-canvas" height="400" style="max-width:100%;"></canvas>
+    </section>
+
+    <script>
+      const base = document.getElementById('base').textContent.trim();
+      const nsEl = document.getElementById('ns');
+      const topkEl = document.getElementById('topk');
+      const promptEl = document.getElementById('prompt');
+      const answerEl = document.getElementById('answer');
+      const chartImg = document.getElementById('chart-img');
+      const chartMeta = document.getElementById('chart-meta');
+      const chartOutputEl = document.getElementById('chartOutput');
+      const chartCanvas = document.getElementById('chart-canvas');
+      let chartInstance = null;
+
+      async function post(path, body) {
+        const res = await fetch(`${base}${path}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        if (!res.ok) throw new Error(await res.text());
+        return res.json();
+      }
+
+      document.getElementById('ask').addEventListener('click', async () => {
+        answerEl.textContent = 'Loading...';
+        chartImg.src = '';
+        if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+        const ctx = chartCanvas.getContext('2d');
+        ctx && ctx.clearRect(0, 0, chartCanvas.width, chartCanvas.height);
+        chartMeta.textContent = '–';
+        try {
+          const payload = {
+            namespace: nsEl.value.trim() || undefined,
+            prompt: promptEl.value.trim(),
+            topK: Number(topkEl.value) || 5
+          };
+          // Always include chart output preference; backend will decide whether to render a chart based on the prompt and guards
+          payload.chart = { output: chartOutputEl.value || 'png', width: 900, height: 500 };
+          const data = await post('/query', payload);
+          answerEl.textContent = data.answer || '(no answer)';
+          chartMeta.textContent = data.chart ? JSON.stringify(data.chart) : '–';
+          if (data.imagePngBase64) {
+            chartImg.src = `data:image/png;base64,${data.imagePngBase64}`;
+          } else if (data.chart && data.chart.spec && window.Chart) {
+            // Render using Chart.js
+            const spec = data.chart.spec;
+            if (chartInstance) { chartInstance.destroy(); }
+            chartInstance = new Chart(chartCanvas.getContext('2d'), spec);
+          }
+        } catch (err) {
+          answerEl.textContent = `Error: ${err.message || err}`;
+        }
+      });
+
+      document.getElementById('ingest3').addEventListener('click', async () => {
+        try {
+          const ns = nsEl.value.trim() || 'inprocess-inspection';
+          const sample = {
+            namespace: ns,
+            documents: [
+              {
+                id: 'rec-pl-17',
+                json: {
+                  id: 'rec-pl-17',
+                  created_at: '2024-07-01T10:00:00Z',
+                  plant_id: 'PL-17',
+                  plant_name: 'Ahmedabad Plant',
+                  actual_readings: 42.5,
+                  accepted: 40,
+                  rejected: 2,
+                  po_no: 'PO-99221'
+                }
+              },
+              {
+                id: 'rec-pl-22',
+                json: {
+                  id: 'rec-pl-22',
+                  created_at: '2024-07-02T10:00:00Z',
+                  plant_id: 'PL-22',
+                  plant_name: 'Pune Plant',
+                  actual_readings: 38.0,
+                  accepted: 34,
+                  rejected: 4,
+                  po_no: 'PO-99222'
+                }
+              },
+              {
+                id: 'rec-pl-31',
+                json: {
+                  id: 'rec-pl-31',
+                  created_at: '2024-07-03T10:00:00Z',
+                  plant_id: 'PL-31',
+                  plant_name: 'Bengaluru Plant',
+                  actual_readings: 50.0,
+                  accepted: 45,
+                  rejected: 5,
+                  po_no: 'PO-99223'
+                }
+              }
+            ]
+          };
+          const data = await post('/ingest', sample);
+          alert(`Ingested to "${ns}". Chunks added: ${data.chunksAdded}`);
+        } catch (err) {
+          alert(`Ingest error: ${err.message || err}`);
+        }
+      });
+    </script>
+  </body>
+</html>
