@@ -160,8 +160,8 @@ ingestRouter.post("/", async (req, res) => {
       }))
     );
 
-    const stats = await vectorStore.getStats(namespace ?? "default");
-    const storageType = vectorStore.getActiveStorageType();
+    const stats = await adaptiveVectorStore.getStats(namespace ?? "default");
+    const storageType = adaptiveVectorStore.getActiveStorageType();
     
     res.json({ 
       ok: true, 
