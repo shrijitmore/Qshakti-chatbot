@@ -24,7 +24,7 @@ class AdaptiveVectorStore {
             }
         }
         catch (error) {
-            console.log('⚠️ ChromaDB initialization failed - using in-memory storage:', error.message);
+            console.log('⚠️ ChromaDB initialization failed - using in-memory storage:', error?.message || error);
             this.activeStore = inMemoryVectorStore_1.vectorStore;
         }
     }
@@ -34,7 +34,7 @@ class AdaptiveVectorStore {
         }
         catch (error) {
             if (this.isChromaAvailable && this.activeStore === chromaVectorStore_1.chromaVectorStore) {
-                console.log('ChromaDB upsert failed, falling back to in-memory store:', error.message);
+                console.log('ChromaDB upsert failed, falling back to in-memory store:', error?.message || error);
                 this.activeStore = inMemoryVectorStore_1.vectorStore;
                 this.isChromaAvailable = false;
                 return await this.activeStore.upsert(records);
@@ -48,7 +48,7 @@ class AdaptiveVectorStore {
         }
         catch (error) {
             if (this.isChromaAvailable && this.activeStore === chromaVectorStore_1.chromaVectorStore) {
-                console.log('ChromaDB query failed, falling back to in-memory store:', error.message);
+                console.log('ChromaDB query failed, falling back to in-memory store:', error?.message || error);
                 this.activeStore = inMemoryVectorStore_1.vectorStore;
                 this.isChromaAvailable = false;
                 return await this.activeStore.query(input);
