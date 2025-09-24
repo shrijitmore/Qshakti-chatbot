@@ -150,7 +150,7 @@ ingestRouter.post("/", async (req, res) => {
     const texts = allChunks.map((d) => d.text);
     const vectors = await embeddings.embedMany(texts);
 
-    await adaptiveVectorStore.upsert(
+    await vectorStore.upsert(
       allChunks.map((d, i) => ({
         id: d.id,
         text: d.text,
@@ -160,8 +160,8 @@ ingestRouter.post("/", async (req, res) => {
       }))
     );
 
-    const stats = await adaptiveVectorStore.getStats(namespace ?? "default");
-    const storageType = adaptiveVectorStore.getActiveStorageType();
+    const stats = await vectorStore.getStats(namespace ?? "default");
+    const storageType = vectorStore.getActiveStorageType();
     
     res.json({ 
       ok: true, 
@@ -261,7 +261,7 @@ ingestRouter.post("/load-qc", async (req, res) => {
       console.log(`Embedding batch ${Math.floor(i/batchSize) + 1}/${Math.ceil(allChunks.length/batchSize)}`);
       const vectors = await embeddings.embedMany(texts);
 
-      await adaptiveVectorStore.upsert(
+      await vectorStore.upsert(
         batch.map((d, idx) => ({
           id: d.id,
           text: d.text,
@@ -275,8 +275,8 @@ ingestRouter.post("/load-qc", async (req, res) => {
       console.log(`Embedded and stored ${totalEmbedded}/${allChunks.length} chunks`);
     }
 
-    const stats = await adaptiveVectorStore.getStats(namespace);
-    const storageType = adaptiveVectorStore.getActiveStorageType();
+    const stats = await vectorStore.getStats(namespace);
+    const storageType = vectorStore.getActiveStorageType();
 
     res.json({ 
       ok: true, 
