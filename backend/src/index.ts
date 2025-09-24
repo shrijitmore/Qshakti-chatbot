@@ -34,10 +34,10 @@ app.get("/health", async (_req, res) => {
         hasGoogleKey: !!process.env.GOOGLE_API_KEY
       }
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({ 
       status: "error", 
-      error: error.message,
+      error: error?.message || 'Unknown error',
       timestamp: new Date().toISOString()
     });
   }
