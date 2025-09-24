@@ -33,9 +33,9 @@ class AdaptiveVectorStore implements VectorStore {
   async upsert(records: Parameters<VectorStore['upsert']>[0]): Promise<void> {
     try {
       return await this.activeStore.upsert(records);
-    } catch (error) {
+    } catch (error: any) {
       if (this.isChromaAvailable && this.activeStore === chromaVectorStore) {
-        console.log('ChromaDB upsert failed, falling back to in-memory store:', error.message);
+        console.log('ChromaDB upsert failed, falling back to in-memory store:', error?.message || error);
         this.activeStore = inMemoryVectorStore;
         this.isChromaAvailable = false;
         return await this.activeStore.upsert(records);
