@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { z } from "zod";
 import { embeddings } from "../services/embeddings";
-import { adaptiveVectorStore } from "../services/adaptiveVectorStore";
+import { vectorStore } from "../services/inMemoryVectorStore";
 import { llm } from "../services/llm";
 import { buildChart } from "../services/chart";
 
