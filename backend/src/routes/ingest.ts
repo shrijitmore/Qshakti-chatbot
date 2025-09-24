@@ -3,7 +3,6 @@ import { z } from "zod";
 import { chunkText } from "../utils/chunk";
 import { embeddings } from "../services/embeddings";
 import { vectorStore } from "../services/inMemoryVectorStore";
-import { adaptiveVectorStore } from "../services/adaptiveVectorStore";
 import type { IngestDocument } from "../types";
 import { jsonToText } from "../utils/jsonToText";
 
@@ -161,15 +160,11 @@ ingestRouter.post("/", async (req, res) => {
       }))
     );
 
-    const stats = await adaptiveVectorStore.getStats(namespace ?? "default");
-    const storageType = adaptiveVectorStore.getActiveStorageType();
-    
     res.json({ 
       ok: true, 
       chunksAdded: allChunks.length, 
       namespace: namespace ?? "default",
-      storageType,
-      stats
+      storageType: "In-Memory"
     });
   } catch (err: any) {
     console.error(err);
@@ -201,8 +196,8 @@ ingestRouter.post("/load-qc", async (req, res) => {
     
     // Process using the existing QC data processing logic
     const namespace = "qc_inspections";
-    const chunkSize = 1200;
-    const chunkOverlap = 200;
+    const chunkSize = 1000;
+    const chunkOverlap = 150;
     
     const allChunks: IngestDocument[] = [];
     let processedCount = 0;
@@ -252,7 +247,7 @@ ingestRouter.post("/load-qc", async (req, res) => {
     console.log(`Generated ${allChunks.length} chunks from ${processedCount} records`);
     
     // Batch embedding for better performance
-    const batchSize = 25; // Smaller batches for better reliability
+    const batchSize = 20;
     let totalEmbedded = 0;
     
     for (let i = 0; i < allChunks.length; i += batchSize) {
@@ -276,17 +271,13 @@ ingestRouter.post("/load-qc", async (req, res) => {
       console.log(`Embedded and stored ${totalEmbedded}/${allChunks.length} chunks`);
     }
 
-    const stats = await adaptiveVectorStore.getStats(namespace);
-    const storageType = adaptiveVectorStore.getActiveStorageType();
-
     res.json({ 
       ok: true, 
       message: `Successfully processed ${processedCount} QC records into ${allChunks.length} chunks`,
       recordsProcessed: processedCount,
       chunksCreated: allChunks.length,
       namespace,
-      storageType,
-      stats
+      storageType: "In-Memory"
     });
     
   } catch (err: any) {
