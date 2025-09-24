@@ -1,0 +1,15 @@
+yarn run v1.22.22
+$ nodemon --watch src --ext ts --exec ts-node src/index.ts
+[33m[nodemon] 3.1.10[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): src/**/*[39m
+[33m[nodemon] watching extensions: ts[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.2.2] injecting env (5) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+[dotenv@17.2.2] injecting env (0) from .env -- tip: ⚙️  override existing env vars with { override: true }
+Server listening on http://localhost:3001
+📥 Fetching QC data from URL...
+✅ Fetched 14 records
+Generated 14 chunks from 14 records
+Embedding batch 1/1
+Embedded and stored 14/14 chunks
