@@ -1,4 +1,4 @@
-import { ChromaApi, OpenAIEmbeddingFunction, Collection } from 'chromadb';
+import { ChromaApi, Collection } from 'chromadb';
 import type { VectorStore, VectorRecord } from './vectorStore';
 
 class ChromaVectorStore implements VectorStore {
