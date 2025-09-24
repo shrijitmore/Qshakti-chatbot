@@ -275,8 +275,8 @@ ingestRouter.post("/load-qc", async (req, res) => {
       console.log(`Embedded and stored ${totalEmbedded}/${allChunks.length} chunks`);
     }
 
-    const stats = await vectorStore.getStats(namespace);
-    const storageType = vectorStore.getActiveStorageType();
+    const stats = await adaptiveVectorStore.getStats(namespace);
+    const storageType = adaptiveVectorStore.getActiveStorageType();
 
     res.json({ 
       ok: true, 
