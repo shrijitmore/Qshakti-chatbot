@@ -47,9 +47,9 @@ class AdaptiveVectorStore implements VectorStore {
   async query(input: Parameters<VectorStore['query']>[0]): ReturnType<VectorStore['query']> {
     try {
       return await this.activeStore.query(input);
-    } catch (error) {
+    } catch (error: any) {
       if (this.isChromaAvailable && this.activeStore === chromaVectorStore) {
-        console.log('ChromaDB query failed, falling back to in-memory store:', error.message);
+        console.log('ChromaDB query failed, falling back to in-memory store:', error?.message || error);
         this.activeStore = inMemoryVectorStore;
         this.isChromaAvailable = false;
         return await this.activeStore.query(input);
