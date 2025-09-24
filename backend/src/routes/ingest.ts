@@ -51,7 +51,7 @@ ingestRouter.post("/", async (req, res) => {
     const texts = allChunks.map((d) => d.text);
     const vectors = await embeddings.embedMany(texts);
 
-    await vectorStore.upsert(
+    await adaptiveVectorStore.upsert(
       allChunks.map((d, i) => ({
         id: d.id,
         text: d.text,
