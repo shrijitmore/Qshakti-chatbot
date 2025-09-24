@@ -179,6 +179,124 @@ function enhancedQCTextExtraction(record: any): string {
   
   // Basic record info
   sections.push(`INSPECTION RECORD ID: ${record.id}`);
+
+// Endpoint to load QC data from the provided URL
+ingestRouter.post("/load-qc", async (req, res) => {
+  try {
+    const QC_DATA_URL = 'https://customer-assets.emergentagent.com/job_f5e7d433-dcc8-4bb7-8a11-aa712eeef810/artifacts/882htwtq_schema.json';
+    
+    console.log('📥 Fetching QC data from URL...');
+    
+    // Import fetch dynamically for Node.js compatibility
+    const fetch = (await import('node-fetch')).default;
+    const response = await fetch(QC_DATA_URL);
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch QC data: ${response.status} ${response.statusText}`);
+    }
+    
+    const qcData = await response.json();
+    console.log(`✅ Fetched ${Array.isArray(qcData) ? qcData.length : 'unknown'} records`);
+    
+    if (!Array.isArray(qcData)) {
+      throw new Error('QC data is not in expected array format');
+    }
+    
+    // Process using the existing QC data processing logic
+    const namespace = "qc_inspections";
+    const chunkSize = 1200;
+    const chunkOverlap = 200;
+    
+    const allChunks: IngestDocument[] = [];
+    let processedCount = 0;
+    
+    for (const record of qcData) {
+      // Enhanced text extraction for QC data
+      const recordText = enhancedQCTextExtraction(record);
+      
+      if (!recordText || recordText.trim().length < 50) {
+        console.log(`Skipping record ${record.id} - insufficient data`);
+        continue;
+      }
+      
+      const chunks = chunkText(recordText, chunkSize, chunkOverlap);
+      
+      for (let i = 0; i < chunks.length; i++) {
+        allChunks.push({
+          id: `qc-${record.id || processedCount}-chunk-${i}`,
+          text: chunks[i],
+          metadata: {
+            recordId: record.id,
+            plantId: record.created_by_id?.plant_id?.plant_id,
+            plantName: record.created_by_id?.plant_id?.plant_name,
+            itemCode: record.insp_schedule_id_id?.item_code_id?.item_code,
+            itemDescription: record.insp_schedule_id_id?.item_code_id?.item_description,
+            operationName: record.insp_schedule_id_id?.operation_id?.operation_name,
+            inspectionParameter: record.insp_schedule_id_id?.inspection_parameter_id?.inspection_parameter,
+            machineName: record.insp_schedule_id_id?.qc_machine_id_id?.machine_name,
+            inspectionFrequency: record.insp_schedule_id_id?.inspection_frequency,
+            defectClassification: record.insp_schedule_id_id?.likely_defects_classification,
+            createdAt: record.created_at,
+            recordType: 'qc_inspection',
+            chunkIndex: i,
+            totalChunks: chunks.length
+          },
+        });
+      }
+      
+      processedCount++;
+      
+      // Progress logging
+      if (processedCount % 500 === 0) {
+        console.log(`Processed ${processedCount}/${qcData.length} records`);
+      }
+    }
+
+    console.log(`Generated ${allChunks.length} chunks from ${processedCount} records`);
+    
+    // Batch embedding for better performance
+    const batchSize = 25; // Smaller batches for better reliability
+    let totalEmbedded = 0;
+    
+    for (let i = 0; i < allChunks.length; i += batchSize) {
+      const batch = allChunks.slice(i, i + batchSize);
+      const texts = batch.map((d) => d.text);
+      
+      console.log(`Embedding batch ${Math.floor(i/batchSize) + 1}/${Math.ceil(allChunks.length/batchSize)}`);
+      const vectors = await embeddings.embedMany(texts);
+
+      await adaptiveVectorStore.upsert(
+        batch.map((d, idx) => ({
+          id: d.id,
+          text: d.text,
+          metadata: d.metadata ?? {},
+          embedding: vectors[idx],
+          namespace,
+        }))
+      );
+      
+      totalEmbedded += batch.length;
+      console.log(`Embedded and stored ${totalEmbedded}/${allChunks.length} chunks`);
+    }
+
+    const stats = await adaptiveVectorStore.getStats(namespace);
+    const storageType = adaptiveVectorStore.getActiveStorageType();
+
+    res.json({ 
+      ok: true, 
+      message: `Successfully processed ${processedCount} QC records into ${allChunks.length} chunks`,
+      recordsProcessed: processedCount,
+      chunksCreated: allChunks.length,
+      namespace,
+      storageType,
+      stats
+    });
+    
+  } catch (err: any) {
+    console.error("QC data loading error:", err);
+    res.status(400).json({ ok: false, error: err.message ?? "QC data loading failed" });
+  }
+});
   sections.push(`Created: ${record.created_at}`);
   sections.push(`Active Status: ${record.is_active ? 'Active' : 'Inactive'}`);
   sections.push(`Purchase Order: ${record.po_no}`);
