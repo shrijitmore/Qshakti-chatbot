@@ -122,6 +122,16 @@
         }
       });
 
+      document.getElementById('loadQC').addEventListener('click', async () => {
+        try {
+          answerEl.textContent = 'Loading QC data... This may take a few minutes for 30,000+ records.';
+          const data = await post('/ingest/load-qc', {});
+          answerEl.textContent = `QC Data loaded successfully!\n\nRecords processed: ${data.recordsProcessed}\nChunks created: ${data.chunksCreated}\nStorage type: ${data.storageType}\n\n${JSON.stringify(data.stats, null, 2)}`;
+        } catch (err) {
+          answerEl.textContent = `QC Data load error: ${err.message || err}`;
+        }
+      });
+
       document.getElementById('ingest3').addEventListener('click', async () => {
         try {
           const ns = nsEl.value.trim() || 'inprocess-inspection';
