@@ -61,7 +61,16 @@ ingestRouter.post("/", async (req, res) => {
       }))
     );
 
-    res.json({ ok: true, chunksAdded: allChunks.length, namespace: namespace ?? "default" });
+    const stats = await adaptiveVectorStore.getStats(namespace ?? "default");
+    const storageType = adaptiveVectorStore.getActiveStorageType();
+    
+    res.json({ 
+      ok: true, 
+      chunksAdded: allChunks.length, 
+      namespace: namespace ?? "default",
+      storageType,
+      stats
+    });
   } catch (err: any) {
     console.error(err);
     res.status(400).json({ ok: false, error: err.message ?? "Ingest failed" });
