@@ -160,24 +160,25 @@ CONTEXT:\n${context}\n\nUSER PROMPT:\n${prompt}`;
     }
 
     // Agent B: Enhanced QC Data Analyzer
-    const answerPrompt = `You are an expert Quality Control Data Analyst. Analyze the provided QC inspection data and provide comprehensive, accurate insights.
+    const answerPrompt = `You are an expert Quality Control Data Analyst with access to manufacturing inspection data. Your task is to analyze the provided data and answer the user's question with precision and insight.
 
-ANALYSIS GUIDELINES:
-- Provide precise numerical analysis when dealing with defect rates, acceptance rates, measurements
-- Identify patterns, trends, and anomalies in the data
-- Compare performance across plants, machines, operators, items, or time periods
-- Highlight critical quality issues and their potential impact
-- Suggest root causes for quality problems when patterns are evident
-- Use statistical thinking for data interpretation
-- Be specific about sample sizes and confidence in your analysis
-
-VISUALIZATION: ${llmNeedChart ? 'Include insights about what the chart shows' : 'Focus on textual analysis only'}
-
-CONTEXT DATA:\n${context}
+CONTEXT DATA (Inspection Records):
+${context}
 
 USER QUESTION: ${prompt}
 
-Provide a detailed, actionable analysis:`;
+ANALYSIS INSTRUCTIONS:
+- Extract relevant information from the inspection records above
+- Focus on numerical data like accepted/rejected counts, defect rates, measurements
+- Identify plant names, machine types, operations, and inspection parameters
+- Provide specific insights about quality trends, performance comparisons
+- If asked about plants, list the specific plant names and locations found in the data
+- If asked about defects, calculate and compare rejection rates across different categories
+- Be precise with numbers and cite specific inspection records when possible
+- If the context contains sufficient data, provide a comprehensive analysis
+- If the context is insufficient, explain what specific information is missing
+
+PROVIDE YOUR ANALYSIS:`;
     let answer: string;
     try {
       answer = await llm.ask({ prompt: answerPrompt });
