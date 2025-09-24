@@ -2,7 +2,7 @@ import { Router } from "express";
 import { z } from "zod";
 import { chunkText } from "../utils/chunk";
 import { embeddings } from "../services/embeddings";
-import { adaptiveVectorStore } from "../services/adaptiveVectorStore";
+import { vectorStore } from "../services/inMemoryVectorStore";
 import type { IngestDocument } from "../types";
 import { jsonToText } from "../utils/jsonToText";
 
