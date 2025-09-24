@@ -17,9 +17,11 @@
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "chartjs-node-canvas": "^5.0.0",
+    "chromadb": "^3.0.15",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
+    "sqlite3": "^5.1.7",
     "uuid": "^13.0.0",
     "zod": "^4.1.11"
   },
