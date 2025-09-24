@@ -24,8 +24,8 @@ class AdaptiveVectorStore implements VectorStore {
         console.log('⚠️ ChromaDB not available - falling back to in-memory storage');
         this.activeStore = inMemoryVectorStore;
       }
-    } catch (error) {
-      console.log('⚠️ ChromaDB initialization failed - using in-memory storage:', error.message);
+    } catch (error: any) {
+      console.log('⚠️ ChromaDB initialization failed - using in-memory storage:', error?.message || error);
       this.activeStore = inMemoryVectorStore;
     }
   }
