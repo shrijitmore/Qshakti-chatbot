@@ -6,6 +6,8 @@ import { chunkText } from "../utils/chunk";
 import { embeddings } from "../services/embeddings";
 import { vectorStore } from "../services/inMemoryVectorStore";
 import type { IngestDocument } from "../types";
+import { schemaMapper } from "../utils/schemaMapper";
+import { enhancedJsonToText } from "../utils/enhancedJsonToText";
 
 export const ingestRouter = Router();
 
