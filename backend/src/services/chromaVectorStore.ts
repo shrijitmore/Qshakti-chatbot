@@ -6,7 +6,7 @@ class ChromaVectorStore implements VectorStore {
   private collections: Map<string, Collection> = new Map();
 
   constructor() {
-    this.client = new ChromaApi({
+    this.client = new ChromaClient({
       path: "http://localhost:8000", // Default ChromaDB server path
     });
   }
