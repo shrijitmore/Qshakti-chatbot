@@ -171,3 +171,58 @@ Respond with ONLY the Chart.js JSON configuration.`;
     res.status(400).json({ ok: false, error: err.message ?? "Query failed" });
   }
 });
+
+// New endpoint for schema exploration and relationship queries
+queryRouter.post("/schema", async (req, res) => {
+  try {
+    const { action } = req.body;
+    
+    switch (action) {
+      case 'documentation':
+        const docs = schemaMapper.generateSchemaDocumentation();
+        res.json({
+          ok: true,
+          documentation: docs,
+          type: 'schema_documentation'
+        });
+        break;
+        
+      case 'relationships':
+        const { tableName } = req.body;
+        if (!tableName) {
+          return res.status(400).json({ ok: false, error: 'tableName required for relationships query' });
+        }
+        
+        const related = schemaMapper.getRelatedTables(tableName);
+        res.json({
+          ok: true,
+          tableName,
+          relationships: related,
+          type: 'table_relationships'
+        });
+        break;
+        
+      case 'categories':
+        const categories = {
+          inspection: schemaMapper.getTablesByCategory('inspection'),
+          master: schemaMapper.getTablesByCategory('master'),
+          user: schemaMapper.getTablesByCategory('user'),
+          admin: schemaMapper.getTablesByCategory('admin')
+        };
+        
+        res.json({
+          ok: true,
+          categories,
+          type: 'table_categories'
+        });
+        break;
+        
+      default:
+        res.status(400).json({ ok: false, error: 'Invalid action. Use: documentation, relationships, or categories' });
+    }
+    
+  } catch (err: any) {
+    console.error('Schema query error:', err);
+    res.status(500).json({ ok: false, error: err.message ?? "Schema query failed" });
+  }
+});
