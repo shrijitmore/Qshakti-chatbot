@@ -4,6 +4,7 @@ import { embeddings } from "../services/embeddings";
 import { vectorStore } from "../services/inMemoryVectorStore";
 import { llm } from "../services/llm";
 import { buildChart } from "../services/chart";
+import { schemaMapper } from "../utils/schemaMapper";
 
 export const queryRouter = Router();
 
