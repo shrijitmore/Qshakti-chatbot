@@ -1,8 +1,8 @@
-import { ChromaApi, Collection } from 'chromadb';
+import { ChromaClient, Collection } from 'chromadb';
 import type { VectorStore, VectorRecord } from './vectorStore';
 
 class ChromaVectorStore implements VectorStore {
-  private client: ChromaApi;
+  private client: ChromaClient;
   private collections: Map<string, Collection> = new Map();
 
   constructor() {
