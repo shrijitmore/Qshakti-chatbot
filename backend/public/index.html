@@ -276,6 +276,37 @@
         }
       });
 
+      document.getElementById('loadCombinedDB').addEventListener('click', async () => {
+        try {
+          answerEl.textContent = 'Loading combined PostgreSQL database... This may take several minutes for processing all tables and relationships.';
+          const data = await post('/ingest/load-combined-db', {});
+          answerEl.textContent = `Combined Database loaded successfully! 🎉\n\n` +
+            `Tables processed: ${data.tablesProcessed}\n` +
+            `Records processed: ${data.recordsProcessed}\n` +
+            `Chunks created: ${data.chunksCreated}\n` +
+            `Priority tables found: ${data.priorityTablesFound}\n` +
+            `Schema documentation: ${data.schemaDocGenerated ? 'Generated ✅' : 'Not generated ❌'}\n` +
+            `Storage type: ${data.storageType}\n\n` +
+            `You can now ask questions about:\n` +
+            `- Inspection data and quality control\n` +
+            `- Plant operations and machine performance\n` +
+            `- User activities and roles\n` +
+            `- Cross-table relationships and insights`;
+        } catch (err) {
+          answerEl.textContent = `Combined DB load error: ${err.message || err}`;
+        }
+      });
+
+      document.getElementById('showSchema').addEventListener('click', async () => {
+        try {
+          answerEl.textContent = 'Loading schema documentation...';
+          const data = await post('/query/schema', { action: 'documentation' });
+          answerEl.textContent = data.documentation || 'No schema documentation available';
+        } catch (err) {
+          answerEl.textContent = `Schema load error: ${err.message || err}`;
+        }
+      });
+
       document.getElementById('loadQC').addEventListener('click', async () => {
         try {
           answerEl.textContent = 'Loading QC data... This may take a few minutes for 30,000+ records.';
