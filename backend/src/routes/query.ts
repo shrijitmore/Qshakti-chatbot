@@ -86,20 +86,34 @@ queryRouter.post("/", async (req, res) => {
     const results = await vectorStore.query({ namespace: ns, embedding: qVec, topK: effectiveTopK });
     const context = results.map((r) => r.text).join("\n\n");
 
-    const answerPrompt = `You are an expert data analyst. Your task is to analyze the provided JSON data to answer the user's question and provide key insights.
+    const answerPrompt = `You are an expert data analyst specializing in PostgreSQL relational database analysis. Your task is to analyze the provided data context to answer the user's question with comprehensive insights and natural language explanations.
 
---- DATA CONTEXT (JSON) ---
+--- DATABASE CONTEXT ---
 ${context}
 
 --- USER'S QUESTION ---
 ${prompt}
 
---- INSTRUCTIONS ---
-1.  **Analyze the JSON data** to find the information needed to answer the question. You must traverse the nested objects to find relevant details.
-2.  **Provide a brief summary** of your findings in natural language. Do not just restate the data.
-3.  **Offer key insights** based on the data. What are the important takeaways? What trends or anomalies do you see?
-4.  **Format your response** using Markdown for readability (e.g., headings, bold text, lists).
-5.  **Always use foreign key relationships if present. If multiple tables are referenced, attempt joins before returning separate queries.
+--- ANALYSIS INSTRUCTIONS ---
+1. **Understand Relationships**: The data contains multiple related tables with foreign keys. Always identify and explain relationships between entities (users, plants, machines, operations, inspections).
+
+2. **Natural Language Focus**: 
+   - Refer to entities by their meaningful names, not IDs or table names
+   - Example: "Inspector Arpit from Plant Ammunition Factory Khadki" instead of "user_id: 123 from plant_id: 1001"
+   - Use relationship context to provide rich, connected insights
+
+3. **Comprehensive Analysis**:
+   - Identify patterns, trends, and anomalies in the data
+   - Provide quantitative insights with numbers and percentages where available
+   - Explain the business implications of your findings
+
+4. **Structured Response**:
+   - Start with a clear executive summary
+   - Use markdown formatting (headers, bullet points, tables)
+   - Include specific examples and evidence from the data
+   - End with key takeaways and recommendations
+
+5. **Cross-table Insights**: When data spans multiple tables, connect the information to tell a complete story about operations, quality, performance, etc.
 
 --- YOUR ANALYSIS ---
 `;
