@@ -4,24 +4,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadQCData = loadQCData;
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 const node_fetch_1 = __importDefault(require("node-fetch"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const QC_DATA_URL = 'https://customer-assets.emergentagent.com/job_f5e7d433-dcc8-4bb7-8a11-aa712eeef810/artifacts/882htwtq_schema.json';
+const QC_DATA_PATH = path_1.default.resolve(__dirname, '../../JSON data/schema.json');
 const BACKEND_URL = `http://localhost:${process.env.PORT || 3001}`;
 async function loadQCData() {
-    console.log('🔄 Starting QC data loading process...');
+    console.log('Starting QC data loading process...');
     try {
-        // Fetch the QC data
-        console.log('📥 Fetching QC data from URL...');
-        const response = await (0, node_fetch_1.default)(QC_DATA_URL);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+        // Read the local QC data file
+        console.log(`Reading QC data from local file: ${QC_DATA_PATH}`);
+        if (!fs_1.default.existsSync(QC_DATA_PATH)) {
+            throw new Error(`Data file not found at: ${QC_DATA_PATH}`);
         }
-        const qcData = await response.json();
-        console.log(`✅ Fetched ${Array.isArray(qcData) ? qcData.length : 'unknown'} records`);
+        const fileContent = fs_1.default.readFileSync(QC_DATA_PATH, 'utf-8');
+        const qcData = JSON.parse(fileContent);
+        console.log(`Fetched ${Array.isArray(qcData) ? qcData.length : 'unknown'} records`);
         // Send to ingestion endpoint
-        console.log('🔄 Sending data to ingestion endpoint...');
+        console.log('Sending data to ingestion endpoint...');
         const ingestResponse = await (0, node_fetch_1.default)(`${BACKEND_URL}/ingest/qc-data`, {
             method: 'POST',
             headers: {
@@ -30,8 +32,8 @@ async function loadQCData() {
             body: JSON.stringify({
                 namespace: 'qc_inspections',
                 data: qcData,
-                chunkSize: 1200,
-                chunkOverlap: 200
+                chunkSize: 5000,
+                chunkOverlap: 1000
             }),
         });
         if (!ingestResponse.ok) {
