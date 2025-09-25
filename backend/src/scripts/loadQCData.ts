@@ -1,27 +1,27 @@
+import fs from 'fs';
+import path from 'path';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const QC_DATA_URL = 'https://customer-assets.emergentagent.com/job_f5e7d433-dcc8-4bb7-8a11-aa712eeef810/artifacts/882htwtq_schema.json';
+const QC_DATA_PATH = path.resolve(__dirname, '../../JSON data/schema.json');
 const BACKEND_URL = `http://localhost:${process.env.PORT || 3001}`;
 
 async function loadQCData() {
-  console.log('🔄 Starting QC data loading process...');
+  console.log('Starting QC data loading process...');
   
   try {
-    // Fetch the QC data
-    console.log('📥 Fetching QC data from URL...');
-    const response = await fetch(QC_DATA_URL);
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+    // Read the local QC data file
+    console.log(`Reading QC data from local file: ${QC_DATA_PATH}`);
+    if (!fs.existsSync(QC_DATA_PATH)) {
+      throw new Error(`Data file not found at: ${QC_DATA_PATH}`);
     }
-    
-    const qcData = await response.json();
-    console.log(`✅ Fetched ${Array.isArray(qcData) ? qcData.length : 'unknown'} records`);
+    const fileContent = fs.readFileSync(QC_DATA_PATH, 'utf-8');
+    const qcData = JSON.parse(fileContent);
+    console.log(`Fetched ${Array.isArray(qcData) ? qcData.length : 'unknown'} records`);
     
     // Send to ingestion endpoint
-    console.log('🔄 Sending data to ingestion endpoint...');
+    console.log('Sending data to ingestion endpoint...');
     const ingestResponse = await fetch(`${BACKEND_URL}/ingest/qc-data`, {
       method: 'POST',
       headers: {
@@ -30,8 +30,8 @@ async function loadQCData() {
       body: JSON.stringify({
         namespace: 'qc_inspections',
         data: qcData,
-        chunkSize: 1200,
-        chunkOverlap: 200
+        chunkSize: 5000,
+        chunkOverlap: 1000
       }),
     });
     

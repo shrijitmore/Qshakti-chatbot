@@ -11,9 +11,7 @@ const QuerySchema = z.object({
   namespace: z.string().optional(),
   prompt: z.string().min(1),
   topK: z.number().int().min(1).max(50).optional().default(5),
-  // Client override for charting: true -> force attempt; false -> suppress; undefined -> AI decides
   chartRequested: z.boolean().optional(),
-  // Optional chart config; a chart will only be generated if requested by client
   chart: z
     .object({
       type: z.enum(["bar", "line", "pie", "doughnut"]).optional(),
@@ -24,20 +22,16 @@ const QuerySchema = z.object({
     .optional(),
 });
 
-// Minimal server-side validator: require at least two numeric values in context
 function shouldChartFromContext(context: string): boolean {
-  // Count numeric tokens (integers or decimals)
   const nums = context.match(/[-+]?\b\d+(?:\.\d+)?\b/g);
   return (nums?.length ?? 0) >= 2;
 }
 
-// Detect whether the prompt explicitly asks to draw a chart
 function promptRequestsChart(prompt: string): boolean {
   const p = prompt.toLowerCase();
   return /(chart|graph|plot|visuali[sz]e|visuali[sz]ation|pie|bar|line|doughnut|donut)/.test(p);
 }
 
-// Infer a chart type from the user's prompt when Agent A did not specify
 function inferChartTypeFromPrompt(prompt: string): "bar" | "line" | "pie" | "doughnut" {
   const p = prompt.toLowerCase();
   if (/(^|\b)(pie)\b/.test(p)) return "pie";
@@ -47,167 +41,111 @@ function inferChartTypeFromPrompt(prompt: string): "bar" | "line" | "pie" | "dou
   return "bar";
 }
 
-// Lightweight context parser to support fallback behavior without LLM
-type ParsedRow = { plant: string; accepted?: number; rejected?: number; actual_readings?: number };
-function parseRowsFromContext(context: string): ParsedRow[] {
-  const rowsMap = new Map<string, ParsedRow>();
-  let current = "";
-  const ensure = (k: string) => {
-    if (!rowsMap.has(k)) rowsMap.set(k, { plant: k });
-    return rowsMap.get(k)!;
-  };
-  const lines = context.split(/\n|,|;|\|/g).map((s) => s.trim()).filter(Boolean);
+function parseContextToKeyValue(context: string): Record<string, any> {
+  const data: Record<string, any> = {};
+  const lines = context.split(/\n/g).map(s => s.trim()).filter(Boolean);
   for (const line of lines) {
-    const mName = line.match(/plant[_\s]?name\s*:\s*([^\n]+)/i);
-    const mId = line.match(/plant[_\s]?id\s*:\s*([^\n]+)/i);
-    if (mName) { current = mName[1].trim(); ensure(current); continue; }
-    if (mId) { if (!current) current = mId[1].trim(); ensure(current); continue; }
-    const mA = line.match(/accepted\s*:\s*(-?\d+(?:\.\d+)?)/i);
-    if (mA && current) { const r = ensure(current); r.accepted = Number(mA[1]); continue; }
-    const mR = line.match(/rejected\s*:\s*(-?\d+(?:\.\d+)?)/i);
-    if (mR && current) { const r = ensure(current); r.rejected = Number(mR[1]); continue; }
-    const mX = line.match(/actual[_\s]?readings?\s*:\s*(-?\d+(?:\.\d+)?)/i);
-    if (mX && current) { const r = ensure(current); r.actual_readings = Number(mX[1]); continue; }
+    const match = line.match(/^(?:--- (.+?) ---|([^:]+):\s*(.*))$/);
+    if (match) {
+      if (match[1]) {
+        // Section header
+      } else if (match[2]) {
+        const key = match[2].trim().replace(/\s+/g, '_').toLowerCase();
+        const value = match[3].trim();
+        const numValue = parseFloat(value);
+        data[key] = isNaN(numValue) ? value : numValue;
+      }
+    }
   }
-  return Array.from(rowsMap.values());
+  return data;
 }
 
-function buildFallbackSummary(rows: ParsedRow[], prompt: string): string {
-  if (rows.length === 0) return "Insufficient context. I need data with per-plant accepted/rejected/actual_readings.";
-  const lines: string[] = [];
-  for (const r of rows) {
-    const parts: string[] = [];
-    if (typeof r.accepted === "number") parts.push(`accepted=${r.accepted}`);
-    if (typeof r.rejected === "number") parts.push(`rejected=${r.rejected}`);
-    if (typeof r.actual_readings === "number") parts.push(`actual_readings=${r.actual_readings}`);
-    lines.push(`- ${r.plant}: ${parts.join(", ")}`);
-  }
-  return `Summary by plant (fallback):\n${lines.join("\n")}`;
+function buildFallbackSummary(context: string, prompt: string): string {
+  const data = parseContextToKeyValue(context);
+  const keys = Object.keys(data);
+  if (keys.length === 0) return "I couldn't find any structured data to answer your question.";
+  const summaryLines = keys.map(key => `- ${key}: ${data[key]}`);
+  return summaryLines.join('\n');
 }
 
-// Detect user explicitly asking NOT to plot
 function promptDisablesChart(prompt: string): boolean {
   const p = prompt.toLowerCase();
-  const patterns: RegExp[] = [
-    /withou?t\s+graph/, // matches 'without graph' and common typo 'withou graph'
-    /withou?t\s+chart/,
-    /w\/?o\s+(graph|chart|viz|visual(ization)?)/, // 'w/o graph', 'w/o chart'
-    /no\s+(graph|chart|plot(ting)?|viz|visual(ization)?|image|png)/,
-    /(don't|do not|dont)\s+(plot|draw|graph|chart)/,
-    /text\s+only/,
-    /only\s+text/,
-    /no\s+figure/,
-  ];
+  const patterns = [/without\s+graph/, /without\s+chart/, /no\s+chart/, /text\s+only/];
   return patterns.some((re) => re.test(p));
-}
-
-// Detect whether there are at least two distinct entity groups (e.g., plants) in the context
-function hasMultipleGroups(context: string): boolean {
-  const names = new Set<string>();
-  // Try common keys emitted by jsonToText and our examples
-  const plantNameRe = /plant[_\s]?name\s*[:\s]+([^\n]+)/gi;
-  const plantIdRe = /plant[_\s]?id\s*[:\s]+([^\n]+)/gi;
-  let m: RegExpExecArray | null;
-  while ((m = plantNameRe.exec(context))) {
-    names.add(m[1].trim().toLowerCase());
-  }
-  while ((m = plantIdRe.exec(context))) {
-    names.add(m[1].trim().toLowerCase());
-  }
-  return names.size >= 2;
 }
 
 queryRouter.post("/", async (req, res) => {
   try {
     const { namespace, prompt, topK, chart, chartRequested } = QuerySchema.parse(req.body);
 
-    // RAG retrieve
     const qVec = (await embeddings.embedMany([prompt]))[0];
     const ns = namespace ?? "default";
-    const results = await vectorStore.query({ namespace: ns, embedding: qVec, topK });
-
+    // Use higher topK to ensure all relevant records are included
+    const effectiveTopK = Math.min(topK || 20, 50);
+    const results = await vectorStore.query({ namespace: ns, embedding: qVec, topK: effectiveTopK });
     const context = results.map((r) => r.text).join("\n\n");
 
-    // Agent A: Decision maker (AUTO mode)
-    const decisionPrompt = `You are Agent A (Decision). Decide if the user's prompt requires a chart/graph based on the prompt and context.
-Return STRICT JSON: {"needChart": boolean, "chartType": "bar"|"line"|"pie"|"doughnut"|null, "reason": string}
-Rules:
-- If the user explicitly asks for a plot/chart/graph/visualization OR numeric comparisons are central, needChart=true.
-- Otherwise needChart=false.
-- If needChart=true and user specified a type (pie/line/bar/doughnut), set chartType accordingly; else default chartType="bar".
-- reason should be short and reference the context sufficiency.
+    const answerPrompt = `You are an expert data analyst. Your task is to analyze the provided JSON data to answer the user's question and provide key insights.
 
-CONTEXT:\n${context}\n\nUSER PROMPT:\n${prompt}`;
-
-    let llmNeedChart = false;
-    let llmChartType: "bar" | "line" | "pie" | "doughnut" | null = null;
-    try {
-      const decisionRaw = await llm.ask({ prompt: decisionPrompt });
-      try {
-        const match = decisionRaw.match(/\{[\s\S]*\}/);
-        const jsonStr = match ? match[0] : decisionRaw;
-        const parsed = JSON.parse(jsonStr);
-        if (typeof parsed?.needChart === "boolean") {
-          llmNeedChart = parsed.needChart;
-        }
-        if (parsed?.chartType && ["bar","line","pie","doughnut"].includes(parsed.chartType)) {
-          llmChartType = parsed.chartType;
-        }
-      } catch { /* ignore, default false */ }
-    } catch (e) {
-      // LLM unavailable (e.g., quota). Keep AUTO off by default.
-      llmNeedChart = promptRequestsChart(prompt) && !promptDisablesChart(prompt);
-    }
-
-    // Agent B: Enhanced QC Data Analyzer
-    const answerPrompt = `You are an expert Quality Control Data Analyst with access to manufacturing inspection data. Your task is to analyze the provided data and answer the user's question with precision and insight.
-
-CONTEXT DATA (Inspection Records):
+--- DATA CONTEXT (JSON) ---
 ${context}
 
-USER QUESTION: ${prompt}
+--- USER'S QUESTION ---
+${prompt}
 
-ANALYSIS INSTRUCTIONS:
-- Extract relevant information from the inspection records above
-- Focus on numerical data like accepted/rejected counts, defect rates, measurements
-- Identify plant names, machine types, operations, and inspection parameters
-- Provide specific insights about quality trends, performance comparisons
-- If asked about plants, list the specific plant names and locations found in the data
-- If asked about defects, calculate and compare rejection rates across different categories
-- Be precise with numbers and cite specific inspection records when possible
-- If the context contains sufficient data, provide a comprehensive analysis
-- If the context is insufficient, explain what specific information is missing
+--- INSTRUCTIONS ---
+1.  **Analyze the JSON data** to find the information needed to answer the question. You must traverse the nested objects to find relevant details.
+2.  **Provide a brief summary** of your findings in natural language. Do not just restate the data.
+3.  **Offer key insights** based on the data. What are the important takeaways? What trends or anomalies do you see?
+4.  **Format your response** using Markdown for readability (e.g., headings, bold text, lists).
+5.  **Always use foreign key relationships if present. If multiple tables are referenced, attempt joins before returning separate queries.
 
-PROVIDE YOUR ANALYSIS:`;
+--- YOUR ANALYSIS ---
+`;
     let answer: string;
     try {
       answer = await llm.ask({ prompt: answerPrompt });
     } catch (e) {
-      // Fallback: build a deterministic summary from context
-      const rows = parseRowsFromContext(context);
-      answer = buildFallbackSummary(rows, prompt);
+      let errorMessage = "I was unable to get a response from the AI.";
+      if (e instanceof Error && e.message) {
+        if (e.message.includes("resource_exhausted")) {
+          errorMessage = "Error: The AI service is overloaded. Please try again.";
+        } else {
+          errorMessage = `Error from AI service: ${e.message}`;
+        }
+      }
+      answer = `${errorMessage}\n\nHere is a summary of the data I found:\n${buildFallbackSummary(context, prompt)}`;
     }
 
-    // Only build a chart if client requested it (chartRequested or chart present),
-    // we have at least 2 retrieved chunks, AND the context looks chartable (>=2 numeric values)
-    // AND there are multiple groups
     let chartMeta: any = null;
     let imagePngBase64: string | null = null;
     const disables = promptDisablesChart(prompt);
-    const wantsChart = (
-      // Explicit force only when chartRequested===true
-      chartRequested === true ? true :
-      // If prompt disables, suppress in AUTO mode
-      (disables ? false : (chartRequested === undefined && llmNeedChart))
-    );
-    if (wantsChart && results.length >= 2 && shouldChartFromContext(context) && hasMultipleGroups(context)) {
+    const wantsChart = !disables && (chartRequested || promptRequestsChart(prompt));
+
+    if (wantsChart && shouldChartFromContext(answer)) {
       const cfg = {
-        type: chart?.type ?? (llmChartType ?? inferChartTypeFromPrompt(prompt)),
+        type: chart?.type ?? inferChartTypeFromPrompt(prompt),
         output: chart?.output ?? "png",
         width: chart?.width ?? 900,
         height: chart?.height ?? 500,
       } as const;
-      const c = await buildChart({ prompt, context, ...cfg });
+
+      const chartPrompt = `You are an expert chart-generating AI. Create a Chart.js JSON configuration based on the provided text summary and the original user request.
+
+--- USER'S REQUEST ---
+${prompt}
+
+--- DATA SUMMARY ---
+${answer}
+
+--- INSTRUCTIONS ---
+- Create a chart that visualizes the data in the summary to answer the user's request.
+- **CRITICAL:** Your response must be a single, valid JSON object using double quotes.
+- Always use foreign key relationships if present. If multiple tables are referenced, attempt joins before returning separate queries
+
+Respond with ONLY the Chart.js JSON configuration.`;
+
+      const c = await buildChart({ prompt: chartPrompt, ...cfg });
       chartMeta = c.meta;
       imagePngBase64 = c.imageBase64 ?? null;
     }

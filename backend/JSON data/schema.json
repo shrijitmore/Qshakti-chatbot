@@ -1,0 +1,1320 @@
+{
+  "activity_log_activity_log": {
+    "columns": {
+      "id": "bigint",
+      "name": "character varying",
+      "activity": "character varying",
+      "last_update": "timestamp with time zone",
+      "module_options": "character varying"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "name": "Admin User",
+        "activity": "Uploaded Plant Master data via Excel file",
+        "last_update": "2025-08-29 16:02:21.400818+05:30",
+        "module_options": "Upload File"
+      },
+      {
+        "id": 2,
+        "name": "Admin User",
+        "activity": "Uploaded Building Section Lab data from Excel",
+        "last_update": "2025-08-29 16:03:06.064523+05:30",
+        "module_options": "Upload File"
+      },
+      {
+        "id": 3,
+        "name": "Admin User",
+        "activity": "Uploaded machine master data via Excel file",
+        "last_update": "2025-08-29 16:08:36.283774+05:30",
+        "module_options": "Upload File"
+      }
+    ]
+  },
+  "auth_user_groups": {
+    "columns": {
+      "id": "bigint",
+      "authuser_id": "bigint (FK -> auth_user.id)",
+      "group_id": "integer (FK -> auth_group.id)"
+    },
+    "sample_rows": []
+  },
+  "django_migrations": {
+    "columns": {
+      "id": "bigint",
+      "app": "character varying",
+      "name": "character varying",
+      "applied": "timestamp with time zone"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "app": "contenttypes",
+        "name": "0001_initial",
+        "applied": "2025-08-29 15:46:47.850211+05:30"
+      },
+      {
+        "id": 2,
+        "app": "contenttypes",
+        "name": "0002_remove_content_type_name",
+        "applied": "2025-08-29 15:46:47.984562+05:30"
+      },
+      {
+        "id": 3,
+        "app": "auth",
+        "name": "0001_initial",
+        "applied": "2025-08-29 15:46:48.486283+05:30"
+      }
+    ]
+  },
+  "django_session": {
+    "columns": {
+      "session_key": "character varying",
+      "session_data": "text",
+      "expire_date": "timestamp with time zone"
+    },
+    "sample_rows": []
+  },
+  "auth_user_user_permissions": {
+    "columns": {
+      "id": "bigint",
+      "authuser_id": "bigint (FK -> auth_user.id)",
+      "permission_id": "integer (FK -> auth_permission.id)"
+    },
+    "sample_rows": []
+  },
+  "auth_permission": {
+    "columns": {
+      "id": "integer",
+      "name": "character varying",
+      "content_type_id": "integer (FK -> django_content_type.id)",
+      "codename": "character varying"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "name": "Can add permission",
+        "content_type_id": 1,
+        "codename": "add_permission"
+      },
+      {
+        "id": 2,
+        "name": "Can change permission",
+        "content_type_id": 1,
+        "codename": "change_permission"
+      },
+      {
+        "id": 3,
+        "name": "Can delete permission",
+        "content_type_id": 1,
+        "codename": "delete_permission"
+      }
+    ]
+  },
+  "auth_group": {
+    "columns": {
+      "id": "integer",
+      "name": "character varying"
+    },
+    "sample_rows": []
+  },
+  "django_content_type": {
+    "columns": {
+      "id": "integer",
+      "app_label": "character varying",
+      "model": "character varying"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "app_label": "auth",
+        "model": "permission"
+      },
+      {
+        "id": 2,
+        "app_label": "auth",
+        "model": "group"
+      },
+      {
+        "id": 3,
+        "app_label": "contenttypes",
+        "model": "contenttype"
+      }
+    ]
+  },
+  "auth_user": {
+    "columns": {
+      "id": "bigint",
+      "last_login": "timestamp with time zone",
+      "is_superuser": "boolean",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "first_name": "character varying",
+      "middle_name": "character varying",
+      "last_name": "character varying",
+      "email": "character varying",
+      "phone_number": "character varying",
+      "password": "character varying",
+      "is_active": "boolean",
+      "is_staff": "boolean",
+      "user_image": "character varying",
+      "user_status": "character varying",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "plant_id": "bigint (FK -> master_plantmaster.id)",
+      "role_id": "bigint (FK -> rbac_role.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "last_login": null,
+        "is_superuser": true,
+        "created_at": "2025-08-29 15:51:01.831796+05:30",
+        "updated_at": "2025-08-29 15:51:01.831796+05:30",
+        "first_name": "Admin",
+        "middle_name": null,
+        "last_name": "User",
+        "email": "admin@gmail.com",
+        "phone_number": "9898989898",
+        "password": "pbkdf2_sha256$1000000$eWLlCoxAsZ9ML0957Lpami$JgVHaIQM87m2k1XQcZ9C2BebzoTxZ+D4CCapodEAxBU=",
+        "is_active": true,
+        "is_staff": true,
+        "user_image": "",
+        "user_status": "active",
+        "created_by_id": null,
+        "plant_id": null,
+        "role_id": 1,
+        "updated_by_id": null
+      },
+      {
+        "id": 2,
+        "last_login": null,
+        "is_superuser": false,
+        "created_at": "2025-08-29 17:23:56.601225+05:30",
+        "updated_at": "2025-09-01 17:12:57.328379+05:30",
+        "first_name": "Arpit",
+        "middle_name": "null",
+        "last_name": "Turkar",
+        "email": "arpit.turkar@indi4.io",
+        "phone_number": "9168719523",
+        "password": "pbkdf2_sha256$1000000$uLFcHzkNzpGrbrRVErxKi0$fkVgeNwqMyq7hDBZjqhFIWp4NNU4Sk5YvNKRPYq7qfE=",
+        "is_active": true,
+        "is_staff": false,
+        "user_image": "",
+        "user_status": "active",
+        "created_by_id": 1,
+        "plant_id": 1,
+        "role_id": 2,
+        "updated_by_id": 1
+      },
+      {
+        "id": 3,
+        "last_login": null,
+        "is_superuser": false,
+        "created_at": "2025-09-08 10:54:03.013894+05:30",
+        "updated_at": "2025-09-08 12:18:15.233204+05:30",
+        "first_name": "Arpit",
+        "middle_name": "null",
+        "last_name": "Dehu Road",
+        "email": "turkararpit@gmail.com",
+        "phone_number": "9187878766",
+        "password": "pbkdf2_sha256$1000000$PxaI2Ln70AULTGNhAr2Dho$7j8Wzpg2achh+uB3e2+3iopam/lsYyQFqlcL0iw1DDg=",
+        "is_active": true,
+        "is_staff": false,
+        "user_image": "",
+        "user_status": "active",
+        "created_by_id": 2,
+        "plant_id": 8,
+        "role_id": 2,
+        "updated_by_id": 2
+      }
+    ]
+  },
+  "auth_user_operation": {
+    "columns": {
+      "id": "bigint",
+      "authuser_id": "bigint (FK -> auth_user.id)",
+      "operationmaster_id": "bigint (FK -> master_operationmaster.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 2,
+        "authuser_id": 2,
+        "operationmaster_id": 458
+      },
+      {
+        "id": 3,
+        "authuser_id": 2,
+        "operationmaster_id": 459
+      },
+      {
+        "id": 6,
+        "authuser_id": 3,
+        "operationmaster_id": 660
+      }
+    ]
+  },
+  "auth_user_qc_machine": {
+    "columns": {
+      "id": "bigint",
+      "authuser_id": "bigint (FK -> auth_user.id)",
+      "machinemaster_id": "bigint (FK -> master_machinemaster.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 3,
+        "authuser_id": 2,
+        "machinemaster_id": 9
+      },
+      {
+        "id": 4,
+        "authuser_id": 2,
+        "machinemaster_id": 10
+      },
+      {
+        "id": 5,
+        "authuser_id": 2,
+        "machinemaster_id": 11
+      }
+    ]
+  },
+  "auth_user_section": {
+    "columns": {
+      "id": "bigint",
+      "authuser_id": "bigint (FK -> auth_user.id)",
+      "buildingsectionlab_id": "bigint (FK -> master_buildingsectionlab.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "authuser_id": 2,
+        "buildingsectionlab_id": 1
+      },
+      {
+        "id": 2,
+        "authuser_id": 2,
+        "buildingsectionlab_id": 2
+      },
+      {
+        "id": 3,
+        "authuser_id": 2,
+        "buildingsectionlab_id": 3
+      }
+    ]
+  },
+  "master_buildingsectionlab": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "building_id": "character varying",
+      "building_category": "character varying",
+      "building_name": "character varying",
+      "sub_section": "character varying",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)",
+      "plant_id": "bigint (FK -> master_plantmaster.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "created_at": "2025-08-29 16:03:05.990192+05:30",
+        "updated_at": "2025-09-05 14:53:12.478239+05:30",
+        "is_active": true,
+        "building_id": "F8",
+        "building_category": null,
+        "building_name": "FILLING 8",
+        "sub_section": "F8_0001",
+        "created_by_id": null,
+        "updated_by_id": 2,
+        "plant_id": 1
+      },
+      {
+        "id": 2,
+        "created_at": "2025-08-29 16:03:05.990192+05:30",
+        "updated_at": "2025-09-05 14:53:12.492843+05:30",
+        "is_active": true,
+        "building_id": "C4",
+        "building_category": null,
+        "building_name": "CASE 4",
+        "sub_section": "C4_001",
+        "created_by_id": null,
+        "updated_by_id": 2,
+        "plant_id": 1
+      },
+      {
+        "id": 3,
+        "created_at": "2025-08-29 16:03:05.990192+05:30",
+        "updated_at": "2025-09-05 14:53:12.503739+05:30",
+        "is_active": true,
+        "building_id": "F2",
+        "building_category": null,
+        "building_name": "FILLING 2",
+        "sub_section": "F2_001",
+        "created_by_id": null,
+        "updated_by_id": 2,
+        "plant_id": 1
+      }
+    ]
+  },
+  "django_admin_log": {
+    "columns": {
+      "id": "integer",
+      "action_time": "timestamp with time zone",
+      "object_id": "text",
+      "object_repr": "character varying",
+      "action_flag": "smallint",
+      "change_message": "text",
+      "content_type_id": "integer (FK -> django_content_type.id)",
+      "user_id": "bigint (FK -> auth_user.id)"
+    },
+    "sample_rows": []
+  },
+  "master_parameterlist": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "inspection_parameter_id": "character varying",
+      "inspection_parameter": "character varying",
+      "parameter_description": "character varying",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)",
+      "plant_id": "bigint (FK -> master_plantmaster.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 244,
+        "created_at": "2025-09-08 10:44:30.398167+05:30",
+        "updated_at": "2025-09-08 10:44:30.398167+05:30",
+        "is_active": true,
+        "inspection_parameter_id": "1031",
+        "inspection_parameter": "i)Verification of acceptance details & release for assembly",
+        "parameter_description": "i)Verification of acceptance details & release for assembly",
+        "created_by_id": null,
+        "updated_by_id": null,
+        "plant_id": 8
+      },
+      {
+        "id": 245,
+        "created_at": "2025-09-08 10:44:30.398167+05:30",
+        "updated_at": "2025-09-08 10:44:30.398167+05:30",
+        "is_active": true,
+        "inspection_parameter_id": "1032",
+        "inspection_parameter": "ii) Ensure no portion of araldite mix goes inside the cap or on threads.",
+        "parameter_description": "ii) Ensure no portion of araldite mix goes inside the cap or on threads.",
+        "created_by_id": null,
+        "updated_by_id": null,
+        "plant_id": 8
+      },
+      {
+        "id": 246,
+        "created_at": "2025-09-08 10:44:30.398167+05:30",
+        "updated_at": "2025-09-08 10:44:30.398167+05:30",
+        "is_active": true,
+        "inspection_parameter_id": "1033",
+        "inspection_parameter": "iii)Ensure SFG-90 sprinkle side of star towards cap side",
+        "parameter_description": "iii)Ensure SFG-90 sprinkle side of star towards cap side",
+        "created_by_id": null,
+        "updated_by_id": null,
+        "plant_id": 8
+      }
+    ]
+  },
+  "master_productionplanner": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "order_number": "character varying",
+      "lot_number": "character varying",
+      "lot_qty": "integer",
+      "item_desc": "character varying",
+      "start_date": "date",
+      "target_date": "date",
+      "status": "character varying",
+      "start_time": "timestamp with time zone",
+      "stop_time": "timestamp with time zone",
+      "duration": "interval",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "item_code_id": "bigint (FK -> master_itemmaster.id)",
+      "section_id": "bigint (FK -> master_buildingsectionlab.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "created_at": "2025-09-01 16:28:49.218412+05:30",
+        "updated_at": "2025-09-01 16:28:49.218412+05:30",
+        "is_active": true,
+        "order_number": "1001",
+        "lot_number": "LOT-1001",
+        "lot_qty": 35,
+        "item_desc": "Case for Ctg.SA 5.56MM Q(Proof)Mkg.",
+        "start_date": null,
+        "target_date": "2025-07-01",
+        "status": "Stop",
+        "start_time": null,
+        "stop_time": null,
+        "duration": null,
+        "created_by_id": null,
+        "item_code_id": 32,
+        "section_id": 2,
+        "updated_by_id": null
+      },
+      {
+        "id": 2,
+        "created_at": "2025-09-01 16:28:49.218412+05:30",
+        "updated_at": "2025-09-01 16:28:49.218412+05:30",
+        "is_active": true,
+        "order_number": "1002",
+        "lot_number": "LOT-1002",
+        "lot_qty": 70,
+        "item_desc": "Case 5.56MM(Standard)Mkg.",
+        "start_date": null,
+        "target_date": "2025-07-02",
+        "status": "Stop",
+        "start_time": null,
+        "stop_time": null,
+        "duration": null,
+        "created_by_id": null,
+        "item_code_id": 33,
+        "section_id": 2,
+        "updated_by_id": null
+      },
+      {
+        "id": 5,
+        "created_at": "2025-09-01 16:28:49.218412+05:30",
+        "updated_at": "2025-09-01 16:52:46.821525+05:30",
+        "is_active": true,
+        "order_number": "1005",
+        "lot_number": "LOT-1005",
+        "lot_qty": 60,
+        "item_desc": "CASE 5.56X45MM FOR CTG.S.A.BALL5.56",
+        "start_date": "2025-09-01",
+        "target_date": "2025-07-05",
+        "status": "Start",
+        "start_time": "2025-09-01 16:52:46.821525+05:30",
+        "stop_time": null,
+        "duration": null,
+        "created_by_id": null,
+        "item_code_id": 36,
+        "section_id": 2,
+        "updated_by_id": 1
+      }
+    ]
+  },
+  "master_rminspectionreading": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "remarks": "character varying",
+      "attachment_document": "character varying",
+      "actual_readings": "jsonb",
+      "io_no": "character varying",
+      "input_type": "character varying",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "insp_schedule_id_id": "bigint (FK -> master_inspectionschedule.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "created_at": "2025-09-01 17:14:26.186367+05:30",
+        "updated_at": "2025-09-01 17:14:26.186367+05:30",
+        "is_active": true,
+        "remarks": "RM",
+        "attachment_document": "",
+        "actual_readings": [
+          "1",
+          "1",
+          "0",
+          "1"
+        ],
+        "io_no": "1002",
+        "input_type": "parameter",
+        "created_by_id": 2,
+        "insp_schedule_id_id": 591,
+        "updated_by_id": 2
+      }
+    ]
+  },
+  "master_faiinspectionreading": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "remarks": "character varying",
+      "attachment_document": "character varying",
+      "actual_readings": "jsonb",
+      "input_type": "character varying",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "insp_schedule_id_id": "bigint (FK -> master_inspectionschedule.id)",
+      "po_no": "character varying (FK -> master_productionplanner.order_number)",
+      "updated_by_id": "bigint (FK -> auth_user.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "created_at": "2025-09-01 17:17:13.268848+05:30",
+        "updated_at": "2025-09-01 17:17:13.268848+05:30",
+        "is_active": true,
+        "remarks": "test",
+        "attachment_document": "",
+        "actual_readings": [],
+        "input_type": "parameter",
+        "created_by_id": 2,
+        "insp_schedule_id_id": 700,
+        "po_no": "1005",
+        "updated_by_id": 2
+      },
+      {
+        "id": 2,
+        "created_at": "2025-09-01 17:19:00.342058+05:30",
+        "updated_at": "2025-09-01 17:19:00.342058+05:30",
+        "is_active": true,
+        "remarks": "test",
+        "attachment_document": "",
+        "actual_readings": [
+          {
+            "accepted": "2",
+            "rejected": "2"
+          }
+        ],
+        "input_type": "parameter",
+        "created_by_id": 2,
+        "insp_schedule_id_id": 672,
+        "po_no": "1004",
+        "updated_by_id": 2
+      },
+      {
+        "id": 3,
+        "created_at": "2025-09-08 12:28:05.206456+05:30",
+        "updated_at": "2025-09-08 12:28:05.206456+05:30",
+        "is_active": true,
+        "remarks": "test",
+        "attachment_document": "",
+        "actual_readings": [
+          "76",
+          "70",
+          "77"
+        ],
+        "input_type": "parameter",
+        "created_by_id": 3,
+        "insp_schedule_id_id": 732,
+        "po_no": "D-2069",
+        "updated_by_id": 3
+      }
+    ]
+  },
+  "master_plantmaster": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "plant_id": "character varying",
+      "plant_name": "character varying",
+      "plant_location_1": "character varying",
+      "plant_location_2": "character varying",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "created_at": "2025-08-29 16:02:17.006693+05:30",
+        "updated_at": "2025-09-05 14:49:32.083350+05:30",
+        "is_active": true,
+        "plant_id": "1001",
+        "plant_name": "AMMUNITION FACTORY KHADKI",
+        "plant_location_1": null,
+        "plant_location_2": null,
+        "created_by_id": 1,
+        "updated_by_id": 1
+      },
+      {
+        "id": 2,
+        "created_at": "2025-08-29 16:02:17.395108+05:30",
+        "updated_at": "2025-09-05 14:49:32.142366+05:30",
+        "is_active": true,
+        "plant_id": "1002",
+        "plant_name": "CORDITE FACTORY ARUVANKADU",
+        "plant_location_1": null,
+        "plant_location_2": null,
+        "created_by_id": 1,
+        "updated_by_id": 1
+      },
+      {
+        "id": 3,
+        "created_at": "2025-08-29 16:02:17.733400+05:30",
+        "updated_at": "2025-09-05 14:49:32.353018+05:30",
+        "is_active": true,
+        "plant_id": "1003",
+        "plant_name": "HIGH ENERGY PROJECTILE FACTORY",
+        "plant_location_1": null,
+        "plant_location_2": null,
+        "created_by_id": 1,
+        "updated_by_id": 1
+      }
+    ]
+  },
+  "master_itemmaster": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "item_code": "character varying",
+      "item_description": "character varying",
+      "unit": "character varying",
+      "item_type": "character varying",
+      "end_store": "character varying",
+      "building_id": "bigint (FK -> master_buildingsectionlab.id)",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)",
+      "plant_id": "bigint (FK -> master_plantmaster.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 32,
+        "created_at": "2025-09-01 15:27:16.955086+05:30",
+        "updated_at": "2025-09-01 15:27:16.955086+05:30",
+        "is_active": true,
+        "item_code": "5514456095",
+        "item_description": "Case for Ctg.SA 5.56MM Q(Proof)Mkg.",
+        "unit": "No",
+        "item_type": "SFG",
+        "end_store": null,
+        "building_id": 2,
+        "created_by_id": null,
+        "updated_by_id": null,
+        "plant_id": 1
+      },
+      {
+        "id": 33,
+        "created_at": "2025-09-01 15:27:16.955086+05:30",
+        "updated_at": "2025-09-01 15:27:16.955086+05:30",
+        "is_active": true,
+        "item_code": "5514458095",
+        "item_description": "Case 5.56MM(Standard)Mkg.",
+        "unit": "No",
+        "item_type": "SFG",
+        "end_store": null,
+        "building_id": 2,
+        "created_by_id": null,
+        "updated_by_id": null,
+        "plant_id": 1
+      },
+      {
+        "id": 34,
+        "created_at": "2025-09-01 15:27:16.955086+05:30",
+        "updated_at": "2025-09-01 15:27:16.955086+05:30",
+        "is_active": true,
+        "item_code": "5514487095",
+        "item_description": "Case 5.56MM Inspection Mkg.",
+        "unit": "No",
+        "item_type": "SFG",
+        "end_store": null,
+        "building_id": 2,
+        "created_by_id": null,
+        "updated_by_id": null,
+        "plant_id": 1
+      }
+    ]
+  },
+  "master_machinemaster": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "machine_id": "character varying",
+      "machine_name": "character varying",
+      "machine_make": "character varying",
+      "machine_model": "character varying",
+      "is_digital": "boolean",
+      "machine_type": "character varying",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)",
+      "plant_id": "bigint (FK -> master_plantmaster.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 9,
+        "created_at": "2025-09-01 15:26:54.492174+05:30",
+        "updated_at": "2025-09-01 15:26:54.492174+05:30",
+        "is_active": true,
+        "machine_id": "KG-990 SR.NO.09",
+        "machine_name": "KG-990 SR.NO.09",
+        "machine_make": "Make1",
+        "machine_model": "Model1",
+        "is_digital": false,
+        "machine_type": "QC",
+        "created_by_id": null,
+        "updated_by_id": null,
+        "plant_id": 1
+      },
+      {
+        "id": 10,
+        "created_at": "2025-09-01 15:26:54.492174+05:30",
+        "updated_at": "2025-09-01 15:26:54.492174+05:30",
+        "is_active": true,
+        "machine_id": "KG-989 SR.NO.06",
+        "machine_name": "KG-989 SR.NO.06",
+        "machine_make": "Make2",
+        "machine_model": "Model2",
+        "is_digital": false,
+        "machine_type": "QC",
+        "created_by_id": null,
+        "updated_by_id": null,
+        "plant_id": 1
+      },
+      {
+        "id": 11,
+        "created_at": "2025-09-01 15:26:54.492174+05:30",
+        "updated_at": "2025-09-01 15:26:54.492174+05:30",
+        "is_active": true,
+        "machine_id": "MTPF- 7171",
+        "machine_name": "MTPF- 7171",
+        "machine_make": "Make3",
+        "machine_model": "Model3",
+        "is_digital": true,
+        "machine_type": "QC",
+        "created_by_id": null,
+        "updated_by_id": null,
+        "plant_id": 1
+      }
+    ]
+  },
+  "master_inprocessinspectionreading": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "remarks": "character varying",
+      "attachment_document": "character varying",
+      "actual_readings": "jsonb",
+      "po_no": "character varying",
+      "input_type": "character varying",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)",
+      "insp_schedule_id_id": "bigint (FK -> master_inspectionschedule.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "created_at": "2025-09-01 16:56:53.505186+05:30",
+        "updated_at": "2025-09-01 16:56:53.505186+05:30",
+        "is_active": true,
+        "remarks": "test",
+        "attachment_document": "",
+        "actual_readings": [
+          {
+            "accepted": "2",
+            "rejected": "2"
+          }
+        ],
+        "po_no": "1004",
+        "input_type": "parameter",
+        "created_by_id": 2,
+        "updated_by_id": 2,
+        "insp_schedule_id_id": 672
+      },
+      {
+        "id": 2,
+        "created_at": "2025-09-01 17:16:15.395242+05:30",
+        "updated_at": "2025-09-01 17:16:15.395242+05:30",
+        "is_active": true,
+        "remarks": "test",
+        "attachment_document": "",
+        "actual_readings": [
+          "9",
+          "11",
+          "10"
+        ],
+        "po_no": "1004",
+        "input_type": "parameter",
+        "created_by_id": 2,
+        "updated_by_id": 2,
+        "insp_schedule_id_id": 667
+      },
+      {
+        "id": 3,
+        "created_at": "2025-09-08 12:18:57.839725+05:30",
+        "updated_at": "2025-09-08 12:18:57.839725+05:30",
+        "is_active": true,
+        "remarks": "test",
+        "attachment_document": "",
+        "actual_readings": [
+          "1",
+          "0"
+        ],
+        "po_no": "D-2074",
+        "input_type": "parameter",
+        "created_by_id": 3,
+        "updated_by_id": 3,
+        "insp_schedule_id_id": 728
+      }
+    ]
+  },
+  "master_rmplanner": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "mis_no": "character varying",
+      "io_number": "character varying",
+      "lot_qty": "integer",
+      "item_desc": "character varying",
+      "start_date": "date",
+      "target_date": "date",
+      "status": "character varying",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "item_code_id": "bigint (FK -> master_itemmaster.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)",
+      "section_id": "bigint (FK -> master_buildingsectionlab.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 10,
+        "created_at": "2025-09-01 16:39:10.738274+05:30",
+        "updated_at": "2025-09-01 16:39:10.738274+05:30",
+        "is_active": true,
+        "mis_no": "MIS001",
+        "io_number": "1001",
+        "lot_qty": 35,
+        "item_desc": "Sample item description 1",
+        "start_date": "2025-07-01",
+        "target_date": "2025-07-01",
+        "status": "Start",
+        "created_by_id": 1,
+        "item_code_id": 37,
+        "updated_by_id": 1,
+        "section_id": 2
+      },
+      {
+        "id": 11,
+        "created_at": "2025-09-01 16:39:10.867900+05:30",
+        "updated_at": "2025-09-01 16:39:10.867900+05:30",
+        "is_active": true,
+        "mis_no": "MIS002",
+        "io_number": "1002",
+        "lot_qty": 70,
+        "item_desc": "Sample item description 2",
+        "start_date": "2025-07-02",
+        "target_date": "2025-07-02",
+        "status": "Start",
+        "created_by_id": 1,
+        "item_code_id": 38,
+        "updated_by_id": 1,
+        "section_id": 2
+      },
+      {
+        "id": 12,
+        "created_at": "2025-09-01 16:39:10.970044+05:30",
+        "updated_at": "2025-09-01 16:39:10.970044+05:30",
+        "is_active": true,
+        "mis_no": "MIS003",
+        "io_number": "1003",
+        "lot_qty": 25,
+        "item_desc": "Sample item description 3",
+        "start_date": "2025-07-03",
+        "target_date": "2025-07-03",
+        "status": "Start",
+        "created_by_id": 1,
+        "item_code_id": 39,
+        "updated_by_id": 1,
+        "section_id": 3
+      }
+    ]
+  },
+  "rbac_permission": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "action": "character varying",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)",
+      "role_id": "bigint (FK -> rbac_role.id)",
+      "screen_id": "bigint (FK -> rbac_screen.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 401,
+        "created_at": "2025-09-01 16:57:38.622498+05:30",
+        "updated_at": "2025-09-01 16:57:38.622498+05:30",
+        "is_active": true,
+        "action": "view",
+        "created_by_id": null,
+        "updated_by_id": null,
+        "role_id": 2,
+        "screen_id": 1
+      },
+      {
+        "id": 402,
+        "created_at": "2025-09-01 16:57:38.622498+05:30",
+        "updated_at": "2025-09-01 16:57:38.622498+05:30",
+        "is_active": true,
+        "action": "create",
+        "created_by_id": null,
+        "updated_by_id": null,
+        "role_id": 2,
+        "screen_id": 1
+      },
+      {
+        "id": 403,
+        "created_at": "2025-09-01 16:57:38.622498+05:30",
+        "updated_at": "2025-09-01 16:57:38.622498+05:30",
+        "is_active": true,
+        "action": "edit",
+        "created_by_id": null,
+        "updated_by_id": null,
+        "role_id": 2,
+        "screen_id": 1
+      }
+    ]
+  },
+  "master_operationmaster": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "operation_id": "character varying",
+      "operation_name": "character varying",
+      "operation_description": "character varying",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)",
+      "plant_id": "bigint (FK -> master_plantmaster.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 458,
+        "created_at": "2025-09-01 16:08:34.601963+05:30",
+        "updated_at": "2025-09-01 16:08:34.601963+05:30",
+        "is_active": true,
+        "operation_id": "0010",
+        "operation_name": "BRING ALL MATERIALS",
+        "operation_description": "BRING ALL MATERIALS",
+        "created_by_id": null,
+        "updated_by_id": null,
+        "plant_id": 1
+      },
+      {
+        "id": 459,
+        "created_at": "2025-09-01 16:08:34.601963+05:30",
+        "updated_at": "2025-09-01 16:08:34.601963+05:30",
+        "is_active": true,
+        "operation_id": "0020",
+        "operation_name": "WEIGH CUPS & RECORD",
+        "operation_description": "WEIGH CUPS & RECORD",
+        "created_by_id": null,
+        "updated_by_id": null,
+        "plant_id": 1
+      },
+      {
+        "id": 460,
+        "created_at": "2025-09-01 16:08:34.601963+05:30",
+        "updated_at": "2025-09-01 16:08:34.601963+05:30",
+        "is_active": true,
+        "operation_id": "0030",
+        "operation_name": "PREPARE SOLN.OF PICKLING",
+        "operation_description": "PREPARE SOLN.OF PICKLING",
+        "created_by_id": null,
+        "updated_by_id": null,
+        "plant_id": 1
+      }
+    ]
+  },
+  "master_inspectionschedule": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "end_store": "character varying",
+      "inspection_type": "character varying",
+      "LSL": "character varying",
+      "target_value": "character varying",
+      "USL": "character varying",
+      "sampling_required": "boolean",
+      "sample_size": "character varying",
+      "inspection_frequency": "character varying",
+      "inspection_method": "character varying",
+      "recording_type": "character varying",
+      "attachment_document": "character varying",
+      "FAI_required": "boolean",
+      "FAI_recording_type": "character varying",
+      "control_limit": "character varying",
+      "likely_defects_classification": "character varying",
+      "remarks": "character varying",
+      "building_id": "bigint (FK -> master_buildingsectionlab.id)",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)",
+      "item_code_id": "character varying (FK -> master_itemmaster.item_code)",
+      "production_machine_id_id": "bigint (FK -> master_machinemaster.id)",
+      "qc_machine_id_id": "bigint (FK -> master_machinemaster.id)",
+      "operation_id": "bigint (FK -> master_operationmaster.id)",
+      "inspection_parameter_id": "bigint (FK -> master_parameterlist.id)",
+      "plant_id_id": "bigint (FK -> master_plantmaster.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 553,
+        "created_at": "2025-09-01 16:16:35.538274+05:30",
+        "updated_at": "2025-09-01 16:16:35.538274+05:30",
+        "is_active": true,
+        "end_store": null,
+        "inspection_type": "Parameter",
+        "LSL": "6",
+        "target_value": "10",
+        "USL": "14",
+        "sampling_required": true,
+        "sample_size": "4.0",
+        "inspection_frequency": "Hourly",
+        "inspection_method": "Manual",
+        "recording_type": null,
+        "attachment_document": "",
+        "FAI_required": false,
+        "FAI_recording_type": null,
+        "control_limit": null,
+        "likely_defects_classification": "Major",
+        "remarks": null,
+        "building_id": 1,
+        "created_by_id": null,
+        "updated_by_id": null,
+        "item_code_id": "ITM0051",
+        "production_machine_id_id": null,
+        "qc_machine_id_id": 9,
+        "operation_id": 458,
+        "inspection_parameter_id": 175,
+        "plant_id_id": 1
+      },
+      {
+        "id": 554,
+        "created_at": "2025-09-01 16:16:35.538274+05:30",
+        "updated_at": "2025-09-01 16:16:35.538274+05:30",
+        "is_active": true,
+        "end_store": null,
+        "inspection_type": "Attribute",
+        "LSL": "6",
+        "target_value": "10",
+        "USL": "14",
+        "sampling_required": true,
+        "sample_size": "4.0",
+        "inspection_frequency": "Hourly",
+        "inspection_method": "Manual",
+        "recording_type": null,
+        "attachment_document": "",
+        "FAI_required": false,
+        "FAI_recording_type": null,
+        "control_limit": null,
+        "likely_defects_classification": "Major",
+        "remarks": null,
+        "building_id": 1,
+        "created_by_id": null,
+        "updated_by_id": null,
+        "item_code_id": "ITM0051",
+        "production_machine_id_id": null,
+        "qc_machine_id_id": 10,
+        "operation_id": 459,
+        "inspection_parameter_id": 176,
+        "plant_id_id": 1
+      },
+      {
+        "id": 555,
+        "created_at": "2025-09-01 16:16:35.538274+05:30",
+        "updated_at": "2025-09-01 16:16:35.538274+05:30",
+        "is_active": true,
+        "end_store": null,
+        "inspection_type": "Parameter",
+        "LSL": "9",
+        "target_value": "13",
+        "USL": "17",
+        "sampling_required": false,
+        "sample_size": null,
+        "inspection_frequency": "Daily",
+        "inspection_method": "Manual",
+        "recording_type": null,
+        "attachment_document": "",
+        "FAI_required": false,
+        "FAI_recording_type": null,
+        "control_limit": null,
+        "likely_defects_classification": "Minor",
+        "remarks": null,
+        "building_id": 2,
+        "created_by_id": null,
+        "updated_by_id": null,
+        "item_code_id": "5514456095",
+        "production_machine_id_id": null,
+        "qc_machine_id_id": 9,
+        "operation_id": 458,
+        "inspection_parameter_id": 175,
+        "plant_id_id": 1
+      }
+    ]
+  },
+  "rbac_screen": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "name": "character varying",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "created_at": "2025-08-29 15:51:16.757897+05:30",
+        "updated_at": "2025-08-29 15:51:16.757897+05:30",
+        "is_active": true,
+        "name": "uploadFile",
+        "created_by_id": null,
+        "updated_by_id": null
+      },
+      {
+        "id": 2,
+        "created_at": "2025-08-29 15:51:16.799818+05:30",
+        "updated_at": "2025-08-29 15:51:16.799818+05:30",
+        "is_active": true,
+        "name": "roleManagement",
+        "created_by_id": null,
+        "updated_by_id": null
+      },
+      {
+        "id": 3,
+        "created_at": "2025-08-29 15:51:16.841419+05:30",
+        "updated_at": "2025-08-29 15:51:16.841419+05:30",
+        "is_active": true,
+        "name": "userManagement",
+        "created_by_id": null,
+        "updated_by_id": null
+      }
+    ]
+  },
+  "token_blacklist_outstandingtoken": {
+    "columns": {
+      "id": "bigint",
+      "token": "text",
+      "created_at": "timestamp with time zone",
+      "expires_at": "timestamp with time zone",
+      "user_id": "bigint (FK -> auth_user.id)",
+      "jti": "character varying"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1NjU0OTkwMiwiaWF0IjoxNzU2NDYzNTAyLCJqdGkiOiI3ZDVkZjQwMmYwMjI0Yjk0YTljMzE4ZjBkMDRkMGU1ZCIsInVzZXJfaWQiOjF9.VOYolxIXf4J4RoMWjkFqZJVUchiwCL8LQeQw_vrr3oM",
+        "created_at": "2025-08-29 10:31:42.217361+05:30",
+        "expires_at": "2025-08-30 10:31:42+05:30",
+        "user_id": 1,
+        "jti": "7d5df402f0224b94a9c318f0d04d0e5d"
+      },
+      {
+        "id": 2,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1NjU1MDg3MywiaWF0IjoxNzU2NDY0NDczLCJqdGkiOiJkOTk1ZWMzNTQ3NzA0NjdlOGJmNGM5MDJhNjMyODRjMyIsInVzZXJfaWQiOjEsInVzZXJuYW1lIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZV9pZCI6MSwicm9sZV9uYW1lIjoiYWRtaW4ifQ.oLLKBMp8P5vbVUs6DFAK4EETRLctwoK4q2C6LasAQNg",
+        "created_at": "2025-08-29 10:47:53.905484+05:30",
+        "expires_at": "2025-08-30 10:47:53+05:30",
+        "user_id": 1,
+        "jti": "d995ec354770467e8bf4c902a63284c3"
+      },
+      {
+        "id": 3,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1NjU1MDkzNywiaWF0IjoxNzU2NDY0NTM3LCJqdGkiOiIwYmFlNWYyYzQ2YmY0N2VhOGJkYzA4NzgzNDJmOWE5ZiIsInVzZXJfaWQiOjEsInVzZXJuYW1lIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZV9pZCI6MSwicm9sZV9uYW1lIjoiYWRtaW4ifQ.c59NfQwrHqKw9G80Pu7pue34NoPTMyDbNcz2rhOPAS8",
+        "created_at": "2025-08-29 10:48:57.806547+05:30",
+        "expires_at": "2025-08-30 10:48:57+05:30",
+        "user_id": 1,
+        "jti": "0bae5f2c46bf47ea8bdc0878342f9a9f"
+      }
+    ]
+  },
+  "auth_group_permissions": {
+    "columns": {
+      "id": "bigint",
+      "group_id": "integer (FK -> auth_group.id)",
+      "permission_id": "integer (FK -> auth_permission.id)"
+    },
+    "sample_rows": []
+  },
+  "rbac_role": {
+    "columns": {
+      "id": "bigint",
+      "created_at": "timestamp with time zone",
+      "updated_at": "timestamp with time zone",
+      "is_active": "boolean",
+      "name": "character varying",
+      "description": "text",
+      "created_by_id": "bigint (FK -> auth_user.id)",
+      "updated_by_id": "bigint (FK -> auth_user.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "created_at": "2025-07-24 18:56:02.264000+05:30",
+        "updated_at": "2025-07-24 18:56:02.264000+05:30",
+        "is_active": true,
+        "name": "admin",
+        "description": "admin",
+        "created_by_id": null,
+        "updated_by_id": null
+      },
+      {
+        "id": 2,
+        "created_at": "2025-08-29 16:46:06.101083+05:30",
+        "updated_at": "2025-08-29 16:46:06.101083+05:30",
+        "is_active": true,
+        "name": "Planner",
+        "description": "Planning",
+        "created_by_id": 1,
+        "updated_by_id": 1
+      },
+      {
+        "id": 3,
+        "created_at": "2025-08-29 16:46:24.424378+05:30",
+        "updated_at": "2025-08-29 16:46:24.424378+05:30",
+        "is_active": true,
+        "name": "Operator",
+        "description": "Operations",
+        "created_by_id": 1,
+        "updated_by_id": 1
+      }
+    ]
+  },
+  "token_blacklist_blacklistedtoken": {
+    "columns": {
+      "id": "bigint",
+      "blacklisted_at": "timestamp with time zone",
+      "token_id": "bigint (FK -> token_blacklist_outstandingtoken.id)"
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "blacklisted_at": "2025-08-29 16:17:54.361498+05:30",
+        "token_id": 1
+      },
+      {
+        "id": 2,
+        "blacklisted_at": "2025-08-29 16:18:58.018458+05:30",
+        "token_id": 2
+      },
+      {
+        "id": 3,
+        "blacklisted_at": "2025-08-29 16:19:37.691832+05:30",
+        "token_id": 3
+      }
+    ]
+  }
+}

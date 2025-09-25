@@ -18,7 +18,7 @@ export const llm = {
       return `LLM unavailable. Heuristic answer based on prompt and context.\n\n${prompt.slice(0, 500)}`;
     }
     const genAI = getClient();
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: process.env.GENERATION_MODEL || "gemini-1.5-flash" });
     const result = await model.generateContent({
       contents: [
         {

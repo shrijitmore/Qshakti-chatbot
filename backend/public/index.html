@@ -5,22 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Q-shakti Chatbot | Demo</title>
     <style>
-      :root { color-scheme: light dark; }
-      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; padding: 24px; }
-      header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
-      h1 { font-size: 18px; margin: 0; }
-      .card { border: 1px solid #ccc3; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
-      label { display: block; font-size: 12px; margin-bottom: 6px; opacity: .8; }
-      input[type="text"], textarea, select { width: 100%; box-sizing: border-box; padding: 10px 12px; border-radius: 10px; border: 1px solid #ccc5; background: transparent; color: inherit; }
-      textarea { min-height: 90px; }
-      .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-      button { appearance: none; border: none; background: #4f46e5; color: #fff; padding: 10px 16px; border-radius: 10px; cursor: pointer; }
-      button.secondary { background: #64748b; }
-      .answer { white-space: pre-wrap; }
-      img.chart { max-width: 100%; border-radius: 10px; border: 1px solid #ccc5; }
-      code { background: #0001; padding: 2px 6px; border-radius: 6px; }
-      .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-      .muted { opacity: .7; font-size: 12px; }
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+      :root {
+        --bg-color: #f8f9fa;
+        --card-bg: #ffffff;
+        --text-color: #212529;
+        --muted-color: #6c757d;
+        --border-color: #dee2e6;
+        --primary-color: #4C6EF5;
+        --primary-hover: #4263Eb;
+        --secondary-color: #868e96;
+        --secondary-hover: #5c6773;
+
+        color-scheme: light;
+      }
+
+      :root[data-theme='dark'] {
+        --bg-color: #1e1e1e;
+        --card-bg: #2c2c2c;
+        --text-color: #e9ecef;
+        --muted-color: #adb5bd;
+        --border-color: #495057;
+
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        margin: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: background-color 0.2s, color 0.2s;
+      }
+
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        transition: background-color 0.2s, border-color 0.2s;
+      }
+
+      label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: var(--muted-color);
+      }
+
+      input[type="text"], textarea, select {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-color);
+        color: inherit;
+        font-size: 16px;
+        transition: border-color 0.2s, background-color 0.2s;
+      }
+      input[type="text"]:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(76, 110, 245, 0.2);
+      }
+
+      textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      button {
+        appearance: none;
+        border: none;
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background-color 0.2s;
+      }
+      button:hover {
+        background-color: var(--primary-hover);
+      }
+
+      button.secondary {
+        background-color: var(--secondary-color);
+      }
+      button.secondary:hover {
+        background-color: var(--secondary-hover);
+      }
+
+      .answer {
+        white-space: pre-wrap;
+        line-height: 1.6;
+      }
+      .answer h1, .answer h2, .answer h3 {
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+        font-weight: 600;
+      }
+
+      img.chart {
+        max-width: 100%;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+      }
+
+      code {
+        background: rgba(128, 128, 128, 0.15);
+        padding: 3px 6px;
+        border-radius: 6px;
+        font-size: 0.9em;
+      }
+
+      .chart-container {
+        max-width: 900px;
+        margin-inline: auto;
+      }
+
+      .muted {
+        color: var(--muted-color);
+        font-size: 14px;
+      }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
   </head>
@@ -65,8 +208,10 @@
     <section class="card">
       <h3>Chart</h3>
       <div id="chart-meta" class="muted">–</div>
-      <img id="chart-img" class="chart" alt="Chart" />
-      <canvas id="chart-canvas" height="400" style="max-width:100%;"></canvas>
+      <div class="chart-container">
+        <img id="chart-img" class="chart" alt="Chart" />
+        <canvas id="chart-canvas" style="max-width:100%;"></canvas>
+      </div>
     </section>
 
     <script>
@@ -106,6 +251,10 @@
           };
           // Always include chart output preference; backend will decide whether to render a chart based on the prompt and guards
           payload.chart = { output: chartOutputEl.value || 'png', width: 900, height: 500 };
+          // If the user prompt clearly asks for a chart/graph, explicitly request charting from the backend
+          if (/(chart|graph|plot|visuali[sz]e|visuali[sz]ation|pie|bar|line|doughnut|donut)/i.test(payload.prompt)) {
+            payload.chartRequested = true;
+          }
           const data = await post('/query', payload);
           answerEl.textContent = data.answer || '(no answer)';
           chartMeta.textContent = data.chart ? JSON.stringify(data.chart) : '–';
@@ -114,6 +263,9 @@
           } else if (data.chart && data.chart.spec && window.Chart) {
             // Render using Chart.js
             const spec = data.chart.spec;
+            if (!spec.options) spec.options = {};
+            spec.options.aspectRatio = 2;
+            spec.options.animation = false;
             if (chartInstance) { chartInstance.destroy(); }
             chartInstance = new Chart(chartCanvas.getContext('2d'), spec);
           }
