@@ -445,7 +445,7 @@ ingestRouter.post("/load-combined-db", async (req, res) => {
         const chunks = chunkText(batchText, 1500, 200);
         
         for (let chunkIdx = 0; chunkIdx < chunks.length; chunkIdx++) {
-          const recordIds = batch.map(r => r.id || i + chunkIdx).filter(Boolean);
+          const recordIds = batch.map((r: any) => r.id || i + chunkIdx).filter(Boolean);
           
           allChunks.push({
             id: `${tableName}-batch-${Math.floor(i/batchSize)}-chunk-${chunkIdx}`,
