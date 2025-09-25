@@ -691,10 +691,10 @@ chownr@^2.0.0:
   resolved "https://registry.npmjs.org/chownr/-/chownr-2.0.0.tgz"
   integrity sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
 
-chromadb-js-bindings-win32-x64-msvc@^1.0.6:
+chromadb-js-bindings-linux-arm64-gnu@^1.0.6:
   version "1.0.7"
-  resolved "https://registry.npmjs.org/chromadb-js-bindings-win32-x64-msvc/-/chromadb-js-bindings-win32-x64-msvc-1.0.7.tgz"
-  integrity sha512-qDjmKMKxcdOZE2HIpl+KnWwlbzLjgslXDDYswNQyQwdDFU4ZeKprJiRGqp1rrRpAumBKPwpyJx2iumlrvcJSUg==
+  resolved "https://registry.npmjs.org/chromadb-js-bindings-linux-arm64-gnu/-/chromadb-js-bindings-linux-arm64-gnu-1.0.7.tgz"
+  integrity sha512-jx39LJxIBtuZrgYz2x1h6CQT6t3pXc8KQxZDsbOpYDrU10WW3NZlxU/CI107uAuqWzxeHHcsSwJvehz+cAfdhA==
 
 chromadb@^3.0.15:
   version "3.0.15"

@@ -1,15 +1,53 @@
-yarn run v1.22.22
-$ nodemon --watch src --ext ts --exec ts-node src/index.ts
+
+> backend@1.0.0 dev
+> nodemon --watch src --ext ts --exec ts-node src/index.ts
+
 [33m[nodemon] 3.1.10[39m
 [33m[nodemon] to restart at any time, enter `rs`[39m
 [33m[nodemon] watching path(s): src/**/*[39m
 [33m[nodemon] watching extensions: ts[39m
 [32m[nodemon] starting `ts-node src/index.ts`[39m
-[dotenv@17.2.2] injecting env (5) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+[dotenv@17.2.2] injecting env (5) from .env -- tip: ⚙️  enable debug logging with { debug: true }
 [dotenv@17.2.2] injecting env (0) from .env -- tip: ⚙️  override existing env vars with { override: true }
 Server listening on http://localhost:3001
-📥 Fetching QC data from URL...
-✅ Fetched 14 records
-Generated 14 chunks from 14 records
-Embedding batch 1/1
-Embedded and stored 14/14 chunks
+🔄 Loading combined PostgreSQL database...
+📖 Reading and parsing combined database...
+🗺️  Building schema map...
+📋 Generated schema documentation with 31 tables
+📊 Processing table: master_inprocessinspectionreading with 3 records
+📊 Processing table: master_inspectionschedule with 3 records
+📊 Processing table: master_plantmaster with 3 records
+📊 Processing table: master_machinemaster with 3 records
+📊 Processing table: master_operationmaster with 3 records
+📊 Processing table: auth_user with 3 records
+📊 Processing table: activity_log_activity_log with 3 records
+📊 Processing table: auth_user_groups with 0 records
+📊 Processing table: django_migrations with 3 records
+📊 Processing table: django_session with 0 records
+📊 Processing table: auth_user_user_permissions with 0 records
+📊 Processing table: auth_permission with 3 records
+📊 Processing table: auth_group with 0 records
+📊 Processing table: django_content_type with 3 records
+📊 Processing table: auth_user_operation with 3 records
+📊 Processing table: auth_user_qc_machine with 3 records
+📊 Processing table: auth_user_section with 3 records
+📊 Processing table: master_buildingsectionlab with 3 records
+📊 Processing table: django_admin_log with 0 records
+📊 Processing table: master_parameterlist with 3 records
+📊 Processing table: master_productionplanner with 3 records
+📊 Processing table: master_rminspectionreading with 1 records
+📊 Processing table: master_faiinspectionreading with 3 records
+📊 Processing table: master_itemmaster with 3 records
+📊 Processing table: master_rmplanner with 3 records
+📊 Processing table: rbac_permission with 3 records
+📊 Processing table: rbac_screen with 3 records
+📊 Processing table: token_blacklist_outstandingtoken with 3 records
+📊 Processing table: auth_group_permissions with 0 records
+📊 Processing table: rbac_role with 3 records
+📊 Processing table: token_blacklist_blacklistedtoken with 3 records
+📦 Generated 32 chunks from 73 total records
+🧠 Starting embedding process...
+🔄 Embedding batch 1/2
+💾 Stored 25/43 chunks
+🔄 Embedding batch 2/2
+💾 Stored 43/43 chunks
