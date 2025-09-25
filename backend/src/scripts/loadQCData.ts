@@ -40,7 +40,7 @@ async function loadQCData() {
       throw new Error(`Ingestion failed: ${ingestResponse.status} ${errorText}`);
     }
     
-    const result = await ingestResponse.json();
+    const result = await ingestResponse.json() as any;
     console.log('✅ QC Data ingestion completed successfully!');
     console.log('📊 Results:', {
       recordsProcessed: result.recordsProcessed,
@@ -49,8 +49,8 @@ async function loadQCData() {
       stats: result.stats
     });
     
-  } catch (error) {
-    console.error('❌ QC data loading failed:', error.message);
+  } catch (error: any) {
+    console.error('❌ QC data loading failed:', error?.message || error);
     process.exit(1);
   }
 }
