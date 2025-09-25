@@ -50,7 +50,7 @@ async function loadQCData() {
         });
     }
     catch (error) {
-        console.error('❌ QC data loading failed:', error.message);
+        console.error('❌ QC data loading failed:', error?.message || error);
         process.exit(1);
     }
 }

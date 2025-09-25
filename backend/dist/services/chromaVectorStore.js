@@ -5,7 +5,7 @@ const chromadb_1 = require("chromadb");
 class ChromaVectorStore {
     constructor() {
         this.collections = new Map();
-        this.client = new chromadb_1.ChromaApi({
+        this.client = new chromadb_1.ChromaClient({
             path: "http://localhost:8000", // Default ChromaDB server path
         });
     }
